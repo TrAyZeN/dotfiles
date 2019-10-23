@@ -1,0 +1,64 @@
+! -------------------- !
+!     Theme colors     !
+! -------------------- !
+
+*.foreground:		#dde9ed
+*.background:		rgba:0000/0000/0000/dddd
+*.cursorColor:		#ffe9d9
+
+! black
+*.color0:		#03132c
+*.color8:		#03132c
+
+! red
+*.color1:		#cb5d6a
+*.color9:		#cb5d6a
+
+! green
+*.color2:		#4ba974
+*.color10:		#4ba974
+
+! yellow
+*.color3:		#fcde82	
+*.color11:		#fcde82	
+
+! blue
+*.color4:		#2f69af
+*.color12:		#2f69af
+
+! magenta
+*.color5:		#862faf
+*.color13:		#862faf
+
+! cyan
+*.color6:		#34b3b0
+*.color14:		#34b3b0
+
+! white
+*.color7:		#fff8e8	
+*.color15:		#fff8e8	
+
+
+! -------------------- !
+!     urxvt config     !
+! -------------------- !
+
+urxvt.depth:		32
+
+urxvt.font:		    xft:Roboto Mono:size=11
+urxvt.boldFont:  	xft:Roboto Mono:size=11
+
+urxvt.saveLines: 	            10000
+urxvt.scrollBar: 	            false
+urxvt.internalBorder:	        10
+urxvt.letterSpace:	            1
+urxvt.url-select.underline:     true
+
+!! Perl extensions
+urxvt.perl-ext-common: 	        default,matcher,font-size,clipboard
+urxvt.keysym.Control-0x2b:      perl:font-size:increase
+urxvt.keysym.Control-0x2d:      perl:font-size:decrease
+urxvt.copyCommand:	            xclip -i -selection clipboard
+urxvt.pasteCommand:	            xclip -o -selection clipboard
+urxvt.keysym.Control-Shift-c: 	perl:clipboard:copy
+urxvt.keysym.Control-Shift-v:	perl:clipboard:paste
