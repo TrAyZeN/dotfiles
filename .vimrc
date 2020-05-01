@@ -34,8 +34,15 @@ set showmatch
 call plug#begin('~/.vim/plugged')
 
 " Vim theme
+"Plug 'levelone/tequila-sunrise.vim'
 Plug 'wdhg/dragon-energy'
-" colorscheme 'dragon-energy'
+colorscheme dragon-energy
+
+" Vim airline
+Plug 'vim-airline/vim-airline'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " Intialize plugin system
 call plug#end()
+
