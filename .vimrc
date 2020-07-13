@@ -7,25 +7,34 @@ endif
 " Directory for plugins
 call plug#begin('~/.vim/plugged')
 
+" Plug 'sheerun/vim-polyglot'
+
 " Colorschemes
-"Plug 'levelone/tequila-sunrise.vim'
+" Plug 'levelone/tequila-sunrise.vim'
 " Plug 'wdhg/dragon-energy'
 " Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 
 " Vim airline
 Plug 'vim-airline/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
-" Plug 'sheerun/vim-polyglot'
-
 " Intialize plugin system
 call plug#end()
+
+colorscheme gruvbox
+set bg=dark
+
+" vim airline config
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " tab size
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set smarttab
 
 " character list
 set list
@@ -49,11 +58,14 @@ set spell
 set autoindent
 set smartindent
 
+set spelllang=en_us
+set spell
+
+set encoding=utf8
+
 " display line numbers on the left
 set number
 
 " show matching parenthesis
 set showmatch
-set bg=dark
-colorscheme gruvbox
 
