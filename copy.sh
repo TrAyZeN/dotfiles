@@ -6,6 +6,7 @@ mkdir -p .config/neofetch
 mkdir -p .config/compton
 mkdir -p .config/polybar
 mkdir -p .config/rofi
+mkdir -p .config/scripts
 
 dot_files=(
 .vimrc
@@ -18,6 +19,7 @@ dot_files=(
 .config/polybar/launch.sh
 .config/rofi/config.rasi
 .config/rofi/trayzen.rasi
+.config/scripts/startup.sh
 )
 
 for df in ${dot_files[@]}; do
