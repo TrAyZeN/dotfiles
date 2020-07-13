@@ -29,7 +29,7 @@ font pango:Roboto Mono 12
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt 
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+BackSpace kill
@@ -187,9 +187,9 @@ bindsym $mod+Shift+v mode "volume"
 # Adjusts brightness
 mode "brightness" {
         # These bindings trigger as soon as you enter this mode
-        bindsym Up   exec xbacklight -inc 10
-        bindsym Down exec xbacklight -dec 10
-        bindsym m exec xbacklight -set 1
+        bindsym Up   exec light -A 10
+        bindsym Down exec light -U 10
+        bindsym m exec light -S 5
 
         # back to normal: Enter or Escape or $mod+Shift+b
         bindsym Return mode "default"
@@ -205,26 +205,12 @@ bindsym $mod+Shift+b mode "brightness"
 #        status_command i3status
 #}
 
-# VS Code shortcut
+# Launch program shorcuts
 bindsym $mod+c exec code
-
-# Chrome shortcut
 bindsym $mod+x exec google-chrome-stable
 
-# Set wallpaper
-exec_always --no-startup-id feh --bg-fill ~/Images/wallpaper.png
-
-# Starts compton
-exec_always --no-startup-id compton --config ~/.config/compton/compton.conf
-
-exec_always --no-startup-id xrdb ~/.Xresources
-
-# exec_always --no-start-id flameshot
-
-# Starts polybar
-exec_always ~/.config/polybar/launch.sh
-
-exec --no-startup-id betterlockscreen -w dim
+# Launch startup configuration
+exec_always bash ~/.config/scripts/startup.sh
 
 # i3 gaps setup
 gaps inner 10
