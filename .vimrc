@@ -7,12 +7,13 @@ endif
 " Directory for plugins
 call plug#begin('~/.vim/plugged')
 
+Plug 'wakatime/vim-wakatime'
+
 " Plug 'sheerun/vim-polyglot'
 
 " Colorschemes
 " Plug 'levelone/tequila-sunrise.vim'
 " Plug 'wdhg/dragon-energy'
-" Plug 'morhetz/gruvbox'
 Plug 'morhetz/gruvbox'
 
 " Vim airline
