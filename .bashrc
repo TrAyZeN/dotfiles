@@ -58,5 +58,9 @@ export PS1="\[\033[38;5;43m\]\u\[\033[38;5;7m\]@\[\033[38;5;69m\]\h\
 [ -e "$DIR_COLORS" ] || DIR_COLORS=""
 eval "`dircolors -b $DIR_COLORS`"
 
+export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf
+2>/dev/null):0
+export LIBGL_ALWAYS_INDIRECT=1
+
 export LS_COLORS='ow=01;36;40'
 
