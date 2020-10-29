@@ -12,6 +12,7 @@ dot_files=(
 .vimrc
 .Xresources
 .bashrc
+.zshrc
 .config/i3/config
 .config/neofetch/config.conf
 .config/compton/compton.conf

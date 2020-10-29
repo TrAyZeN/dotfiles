@@ -38,7 +38,6 @@ BGWhite='\e[47m'       # White
 
 NC="\e[m"               # Color Reset
 
-
 # new alert text
 ALERT=${BWhite}${BGRed} # Bold White on red background
 

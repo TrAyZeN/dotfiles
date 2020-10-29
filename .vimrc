@@ -7,8 +7,6 @@ endif
 " Directory for plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'wakatime/vim-wakatime'
-
 " Plug 'sheerun/vim-polyglot'
 
 " Colorschemes
