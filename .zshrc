@@ -5,25 +5,38 @@ SAVEHIST=10000
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-# Only working with 256 colors
-PROMPT="%F{45}%n%f %F{yellow}%d%f %(?.%F{46}~>%f.%F{197}~>%f) "
+unsetopt beep
+
+# Git
+source ~/gitstatus/gitstatus.plugin.zsh
+
+function set_prompt() {
+    STATUS=''
+
+    if gitstatus_query prompt && [[ $VCS_STATUS_RESULT == ok-sync ]]; then
+        STATUS=[${${VCS_STATUS_LOCAL_BRANCH:-@${VCS_STATUS_COMMIT}}//\%/%%} # escape %
+        (( VCS_STATUS_NUM_STAGED    )) && STATUS+=" +${VCS_STATUS_NUM_STAGED}"
+        (( VCS_STATUS_NUM_UNSTAGED  )) && STATUS+=" !${VCS_STATUS_NUM_UNSTAGED}"
+        (( VCS_STATUS_NUM_UNTRACKED )) && STATUS+=" ?${VCS_STATUS_NUM_UNTRACKED}";
+        STATUS+="] "
+    fi
+
+    # Only working with 256 colors
+    PROMPT="%F{45}%n%f:%F{184}%d%f %F{208}${STATUS}%f%(?.%F{46}~>%f.%F{197}~>%f) "
+    RPROMPT=""
+
+    setopt no_prompt_{bang,subst} prompt_percent  # enable/disable correct prompt expansions
+}
+
+gitstatus_stop 'prompt' && gitstatus_start -s -1 -u -1 -c -1 -d -1 'prompt'
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd set_prompt
 
 # Aliases
 alias ls="ls -CF --color=auto"
 alias grep="grep --color=auto"
 
 export LS_COLORS='ow=01;36;40'
-
-unsetopt beep
-
-# Git
-autoload -Uz vcs_info
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
-setopt prompt_subst
-RPROMPT=\$vcs_info_msg_0_
-zstyle ':vcs_info:git:*' formats '%F{240}(%b)%r%f'
-zstyle ':vcs_info:*' enable git
 
 # Enable vim bindings
 # bindkey -v
