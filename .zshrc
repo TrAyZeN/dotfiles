@@ -60,4 +60,5 @@ bindkey -s '^o' 'lfcd\n'
 [ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
 
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
