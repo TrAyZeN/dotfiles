@@ -38,12 +38,11 @@ BGWhite='\e[47m'       # White
 
 NC="\e[m"               # Color Reset
 
+
 # new alert text
 ALERT=${BWhite}${BGRed} # Bold White on red background
 
-# Aliases
-alias ls="ls -CF --color=auto"
-alias grep='grep --color=auto'
+[ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
 
 # set PATH so it includes user's private bin directories
 PATH="$HOME/bin:$HOME/.local/bin:$PATH"

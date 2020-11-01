@@ -10,6 +10,7 @@ unsetopt beep
 # Git
 source ~/gitstatus/gitstatus.plugin.zsh
 
+# Prompt
 function set_prompt() {
     STATUS=''
 
@@ -32,19 +33,31 @@ gitstatus_stop 'prompt' && gitstatus_start -s -1 -u -1 -c -1 -d -1 'prompt'
 autoload -Uz add-zsh-hook
 add-zsh-hook precmd set_prompt
 
-# Aliases
-alias ls="ls -CF --color=auto"
-alias grep="grep --color=auto"
-
 export LS_COLORS='ow=01;36;40'
 
 # Enable vim bindings
 # bindkey -v
 
+# Completion
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 zstyle :compinstall filename '/home/trayzen/.zshrc'
 compinit
+
+# Use lf to switch directories and bind it to ctrl-o
+lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    fi
+}
+bindkey -s '^o' 'lfcd\n'
+
+# Aliases
+[ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
 
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 

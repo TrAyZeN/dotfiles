@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Color aliases
+alias \
+    ls="ls -CF --color=auto"
+    grep="grep --color=auto"
+
