@@ -1,0 +1,13 @@
+window:
+  padding:
+    x: 10
+    y: 10
+
+  decorations: none
+
+scrolling:
+  history: 1000
+
+font:
+  size: 9.0
+

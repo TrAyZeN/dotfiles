@@ -1,12 +1,14 @@
 #!/bin/bash
 
-mkdir -p .config
-mkdir -p .config/i3
-mkdir -p .config/neofetch
-mkdir -p .config/compton
-mkdir -p .config/polybar
-mkdir -p .config/rofi
-mkdir -p .config/scripts
+mkdir -p \
+    .config \
+    .config/i3 \
+    .config/neofetch \
+    .config/compton \
+    .config/polybar \
+    .config/rofi \
+    .config/scripts \
+    .config/alacritty
 
 dot_files=(
 .vimrc
@@ -22,9 +24,10 @@ dot_files=(
 .config/rofi/config.rasi
 .config/rofi/trayzen.rasi
 .config/scripts/startup.sh
+.config/alacritty/alacritty.yml
 )
 
 for df in ${dot_files[@]}; do
-    cp ~/${df} ./${df}
+    cp ~/${df} ./${df} 2> /dev/null
 done
 
