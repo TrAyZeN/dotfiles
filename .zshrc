@@ -41,12 +41,10 @@ export LS_COLORS='ow=01;36;40'
 # Enable vim bindings
 # bindkey -v
 
-# Default settings i had
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+zstyle :compinstall filename '/home/trayzen/.zshrc'
+compinit
 
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/leo/.zshrc'
-
-# Completion
-autoload -Uz compinit && compinit
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
