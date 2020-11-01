@@ -13,6 +13,7 @@ dot_files=(
 .Xresources
 .bashrc
 .zshrc
+.aliasrc
 .config/i3/config
 .config/neofetch/config.conf
 .config/compton/compton.conf
