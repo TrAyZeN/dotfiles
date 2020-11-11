@@ -4,7 +4,7 @@ mkdir -p \
     .config \
     .config/i3 \
     .config/neofetch \
-    .config/compton \
+    .config/picom \
     .config/polybar \
     .config/rofi \
     .config/scripts \
@@ -18,7 +18,7 @@ dot_files=(
 .aliasrc
 .config/i3/config
 .config/neofetch/config.conf
-.config/compton/compton.conf
+.config/picom/picom.conf
 .config/polybar/config
 .config/polybar/launch.sh
 .config/rofi/config.rasi
