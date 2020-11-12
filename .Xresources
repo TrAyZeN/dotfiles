@@ -2,37 +2,37 @@
 !     Theme colors     !
 ! -------------------- !
 
-*.foreground:		#dde9ed
-*.background:		rgba:0000/0000/0000/dddd
-*.cursorColor:		#ffe9d9
+*.foreground:	#dde9ed
+*.background:	rgba:0000/0000/0000/dddd
+*.cursorColor:	#ffe9d9
 
 ! black
-*.color0:		#03132c
-*.color8:		#03132c
+*.color0:		#131415
+*.color8:		#131415
 
 ! red
-*.color1:		#cb5d6a
-*.color9:		#cb5d6a
+*.color1:		#b31024
+*.color9:		#b31024
 
 ! green
-*.color2:		#4ba974
-*.color10:		#4ba974
+*.color2:		#62d56c
+*.color10:		#62d56c
 
 ! yellow
-*.color3:		#fcde82
-*.color11:		#fcde82
+*.color3:		#f4ca40
+*.color11:		#f4ca40
 
 ! blue
-*.color4:		#2f69af
-*.color12:		#2f69af
+*.color4:		#4a81c3
+*.color12:		#4a81c3
 
 ! magenta
-*.color5:		#862faf
-*.color13:		#862faf
+*.color5:		#864ca1
+*.color13:		#864ca1
 
 ! cyan
-*.color6:		#34b3b0
-*.color14:		#34b3b0
+*.color6:		#5cd8d5
+*.color14:		#5cd8d5
 
 ! white
 *.color7:		#fff8e8
@@ -43,17 +43,11 @@
 !     urxvt config     !
 ! -------------------- !
 
-urxvt.depth:		32
+urxvt.depth: 32
 
-! urxvt.font:		    xft:Roboto Mono:size=11
-! urxvt.boldFont:  	xft:Roboto Mono:size=11
-!urxvt.font:		xft:Hack:size=11
-urxvt.font:                     xft:Terminus:style=Medium:pixelsize=14
-urxvt.boldFont:                 xft:Terminus:style=Medium:pixelsize=14
-urxvt.italicFont:               xft:Terminus:style=Medium:pixelsize=14
-urxvt.boldItalicFont:           xft:Terminus:style=Medium:pixelsize=14
+urxvt.font: xft:Roboto Mono:size=12
 
-urxvt.letterSpace:              -3
+urxvt.letterSpace:              0
 urxvt.lineSpace:                0
 urxvt.boldMode:                 on
 urxvt.colorMode:                on
@@ -75,3 +69,4 @@ urxvt.copyCommand:				xclip -i -selection clipboard
 urxvt.pasteCommand:				xclip -o -selection clipboard
 urxvt.keysym.Control-Shift-c:	perl:clipboard:copy
 urxvt.keysym.Control-Shift-v:	perl:clipboard:paste
+

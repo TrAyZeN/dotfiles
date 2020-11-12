@@ -14,3 +14,18 @@ scrolling:
 font:
   size: 9.0
 
+colors:
+  primary:
+    foreground: '0xdde9ed'
+    background: '0x131415'
+
+  normal:
+    black: '0x131415'
+    red: '0xb31024'
+    green: '0x62d56c'
+    yellow: '0xf4ca40'
+    blue: '0x4a81c3'
+    magenta: '0x864ca1'
+    cyan: '0x5cd8d5'
+    white: '0xfff8e8'
+
