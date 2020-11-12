@@ -23,7 +23,9 @@ function set_prompt() {
     fi
 
     # Only working with 256 colors
-    PROMPT="%F{45}%n%f:%F{184}%d%f %F{208}${STATUS}%f%(?.%F{46}~>%f.%F{197}~>%f) "
+    #PROMPT="%F{45}%n%f:%F{184}%d%f %F{208}${STATUS}%f%(?.%F{46}~>%f.%F{197}~>%f) "
+    # Shorten prompt
+    PROMPT="%F{184}%d%f %F{208}${STATUS}%f%(?.%F{46}~>%f.%F{197}~>%f) "
     RPROMPT=""
 
     setopt no_prompt_{bang,subst} prompt_percent  # enable/disable correct prompt expansions
@@ -59,6 +61,6 @@ bindkey -s '^o' 'lfcd\n'
 # Aliases
 [ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
 
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
