@@ -2,6 +2,9 @@
 
 # Color aliases
 alias \
-    ls="ls -CF --color=auto"
+    ls="ls -CF --color=auto" \
     grep="grep --color=auto"
+
+alias \
+    mkdir="mkdir -p"
 
