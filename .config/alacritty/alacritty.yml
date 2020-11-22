@@ -29,3 +29,7 @@ colors:
     cyan: '0x5cd8d5'
     white: '0xfff8e8'
 
+key_bindings:
+  - { key: Left, mods: Control, chars: "\x1bb" }
+  - { key: Right, mods: Control, chars: "\x1bf" }
+

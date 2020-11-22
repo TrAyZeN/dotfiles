@@ -8,7 +8,8 @@ mkdir -p \
     .config/polybar \
     .config/rofi \
     .config/scripts \
-    .config/alacritty
+    .config/alacritty \
+    .icons/default
 
 dot_files=(
 .vimrc
@@ -25,6 +26,7 @@ dot_files=(
 .config/rofi/trayzen.rasi
 .config/scripts/startup.sh
 .config/alacritty/alacritty.yml
+.icons/default/index.theme
 )
 
 for df in ${dot_files[@]}; do

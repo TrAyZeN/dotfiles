@@ -156,14 +156,38 @@ bindsym $mod+Ctrl+Down resize grow height 4 px or 4 ppt
 bindsym $mod+Ctrl+Up resize shrink height 4 px or 4 ppt
 bindsym $mod+Ctrl+Right resize grow width 4 px or 4 ppt
 
+# Adjusts volume
+mode "volume" {
+    # These bindings trigger as soon as you enter this mode
+    bindsym Up   exec amixer set Master 2%+
+    bindsym Down exec amixer set Master 2%-
+    bindsym m exec amixer set Master toggle
+
+    # back to normal: Enter or Escape or $mod+Shift+v
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+Shift+v mode "default"
+}
+
+bindsym $mod+Shift+v mode "volume"
+
+title_align center
+
+# class                 border  backgr. text    indicator child_border 285577
+client.focused          #000000 #000000 #ffffff #2e9ef4   #000000
+client.focused_inactive #223333 #223333 #aaaaaa #2e9ef4   #000000
+client.unfocused        #223333 #223333 #aaaaaa #2e9ef4   #000000
+
+# for testing purpose
+#client.focused          #ff0000 #00ff00 #0000ff #ff00ff #00ffff
+#client.unfocused          #ff0000 #00ff00 #0000ff #ff00ff #00ffff
+
 #
 # i3 gaps
 #
 gaps inner 10
 gaps outer 4
-
-# Hide windows border and titles
-for_window [class="^.*"] border pixel 0
+for_window [class=".*"] border pixel 0
 
 #
 # Shortcuts
