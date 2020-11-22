@@ -21,15 +21,13 @@ Plug 'vim-airline/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
+Plug 'ludovicchabant/vim-gutentags'
+
 " Intialize plugin system
 call plug#end()
 
 colorscheme gruvbox
 set bg=dark
-
-" vim airline config
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " tab size
 set tabstop=4
@@ -71,4 +69,12 @@ set number
 
 " show matching parenthesis
 set showmatch
+
+" Command completion
+set wildmenu
+set wildmode=full
+
+" Auto load file when it has been changed outside of vim
+set autoread
+
 
