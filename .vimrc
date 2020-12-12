@@ -9,11 +9,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'wakatime/vim-wakatime'
 
-" Plug 'sheerun/vim-polyglot'
-
 " Colorschemes
 " Plug 'levelone/tequila-sunrise.vim'
-" Plug 'wdhg/dragon-energy'
 Plug 'morhetz/gruvbox'
 
 " Vim airline
@@ -21,7 +18,10 @@ Plug 'vim-airline/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
+" Automatically generates ctags
 Plug 'ludovicchabant/vim-gutentags'
+
+Plug 'tpope/vim-vinegar'
 
 " Intialize plugin system
 call plug#end()
@@ -35,8 +35,7 @@ set shiftwidth=4
 set expandtab
 set smarttab
 
-" disable auto indent
-filetype indent off
+filetype indent on
 
 set autoindent
 set smartindent
@@ -72,7 +71,7 @@ set showmatch
 
 " Command completion
 set wildmenu
-set wildmode=full
+set wildmode=longest:full,full
 
 " Auto load file when it has been changed outside of vim
 set autoread
