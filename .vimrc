@@ -76,4 +76,5 @@ set wildmode=longest:full,full
 " Auto load file when it has been changed outside of vim
 set autoread
 
+set noswapfile
 
