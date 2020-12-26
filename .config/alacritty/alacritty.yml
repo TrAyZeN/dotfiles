@@ -18,29 +18,28 @@ font:
 
 colors:
   primary:
-    foreground: '0xebdbb2'
-    background: '0x282828'
+    foreground: '0x777777'
+    background: '0x111111'
 
   normal:
-    black: '0x282828'
-    red: '0xcc241d'
-    green: '0x98971a'
-    yellow: '0xd79921'
-    blue: '0x458588'
-    magenta: '0xb16286'
-    cyan: '0x689d6a'
-    white: '0xa89984'
+    black: '0x141414'
+    red: '0xff5555'
+    green: '0x98ec65'
+    yellow: '0xffcc33'
+    blue: '0x00aaff'
+    magenta: '0xaa88ff'
+    cyan: '0x88ddff'
+    white: '0xcccccc'
 
   bright:
-    black: '0x928374'
-    red: '0xfb4934'
-    green: '0xb8bb26'
-    yellow: '0xfabd2f'
-    blue: '0x83a598'
-    magenta: '0xd3869b'
-    cyan: '0x8ec07c'
-    white: '0xebdbb2'
-
+    black: '0x414141'
+    red: '0xff8888'
+    green: '0xb6f292'
+    yellow: '0xffd966'
+    blue: '0x33bbff'
+    magenta: '0xcebbff'
+    cyan: '0xbbecff'
+    white: '0xffffff'
 
 key_bindings:
   - { key: Left, mods: Control, chars: "\x1bb" }
