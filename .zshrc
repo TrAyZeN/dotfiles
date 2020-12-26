@@ -7,8 +7,10 @@ setopt hist_find_no_dups
 
 unsetopt beep
 
+PLUGIN_DIR="$HOME/.config/zsh/plugins"
+
 # Git
-source ~/gitstatus/gitstatus.plugin.zsh
+source "$PLUGIN_DIR/gitstatus/gitstatus.plugin.zsh"
 
 # Prompt
 function set_prompt() {
@@ -40,13 +42,6 @@ export LS_COLORS='ow=01;36;40'
 # Enable vim bindings
 # bindkey -v
 
-# Completion
-autoload -Uz compinit
-zstyle ':completion:*' menu select
-zstyle :compinstall filename "$HOME/.zshrc"
-fpath=(~/zsh-completions/src $fpath)
-compinit
-
 # Use lf to switch directories and bind it to ctrl-o
 lfcd () {
     tmp="$(mktemp)"
@@ -62,18 +57,26 @@ bindkey -s '^o' 'lfcd\n'
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
-# Aliases
+# Load aliases
 [ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
+
+# Completion
+autoload -Uz compinit
+fpath=($PLUGIN_DIR/zsh-completions/src $fpath)
+zstyle ':completion:*' menu select
+zstyle :compinstall filename "$HOME/.zshrc"
 
 # fzf-tab needs to loaded after compinit, but before plugins which will wrap
 # widgets, such as zsh-autosuggestions or fast-syntax-highlighting
-source "$HOME/fzf-tab/fzf-tab.plugin.zsh"
+source "$PLUGIN_DIR/fzf-tab/fzf-tab.plugin.zsh"
 
 zstyle ":completion:*:git-checkout:*" sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source "$HOME/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+source "$PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
+source "$PLUGIN_DIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+
+compinit
 
