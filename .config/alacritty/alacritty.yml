@@ -18,27 +18,27 @@ font:
 
 colors:
   primary:
-    foreground: '0x777777'
-    background: '0x111111'
+    background: '0x0f1419'
+    foreground: '0xe6e1cf'
 
   normal:
-    black: '0x141414'
-    red: '0xff5555'
-    green: '0x98ec65'
-    yellow: '0xffcc33'
-    blue: '0x00aaff'
-    magenta: '0xaa88ff'
-    cyan: '0x88ddff'
-    white: '0xcccccc'
+    black: '0x0f1419'
+    red: '0xff3333'
+    green: '0xb8cc52'
+    yellow: '0xe7c547'
+    blue: '0x36a3d9'
+    magenta: '0xf07178'
+    cyan: '0x95e6cb'
+    white: '0xffffff'
 
   bright:
-    black: '0x414141'
-    red: '0xff8888'
-    green: '0xb6f292'
-    yellow: '0xffd966'
-    blue: '0x33bbff'
-    magenta: '0xcebbff'
-    cyan: '0xbbecff'
+    black: '0x525252'
+    red: '0xff6565'
+    green: '0xeafe84'
+    yellow: '0xfff779'
+    blue: '0x68d5ff'
+    magenta: '0xffa3aa'
+    cyan: '0xc7fffd'
     white: '0xffffff'
 
 key_bindings:
