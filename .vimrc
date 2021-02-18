@@ -7,14 +7,11 @@ endif
 " Directory for plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'wakatime/vim-wakatime'
-
-" Colorschemes
-" Plug 'levelone/tequila-sunrise.vim'
 Plug 'morhetz/gruvbox'
 
 " Vim airline
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
@@ -22,6 +19,8 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'tpope/vim-vinegar'
+
+Plug 'wakatime/vim-wakatime'
 
 " Intialize plugin system
 call plug#end()
@@ -35,7 +34,7 @@ set shiftwidth=4
 set expandtab
 set smarttab
 
-filetype indent on
+filetype plugin indent on
 
 set autoindent
 set smartindent

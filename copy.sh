@@ -3,6 +3,7 @@
 mkdir -p \
     .config \
     .config/i3 \
+    .config/nvim \
     .config/neofetch \
     .config/picom \
     .config/polybar \
@@ -18,6 +19,7 @@ dot_files=(
 .zshrc
 .aliasrc
 .config/i3/config
+.config/nvim/init.vim
 .config/neofetch/config.conf
 .config/picom/picom.conf
 .config/polybar/config
