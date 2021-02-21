@@ -57,6 +57,15 @@ bindkey -s '^o' 'lfcd\n'
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
+# Convenient fg
+fg() {
+    if [[ $# -eq 1 && $1 = - ]]; then
+        builtin fg %-
+    else
+        builtin fg %"$@"
+    fi
+}
+
 # Load aliases
 [ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
 
