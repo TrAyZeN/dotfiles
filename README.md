@@ -6,5 +6,5 @@ This repository contains configuration for:
 - nvim
 - i3
 - polybar
-- picom
+- [picom](https://github.com/jonaburg/picom)
 
