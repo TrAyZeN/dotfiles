@@ -2,7 +2,7 @@
 
 # Color aliases
 alias \
-    ls="ls -CF --color=auto" \
+    ls="exa --git --header" \
     grep="grep --color=auto"
 
 alias \
