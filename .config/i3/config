@@ -199,7 +199,7 @@ bindsym $mod+x exec google-chrome-stable
 # Startup
 #
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec_always --no-startup-id picom --config ~/.config/picom/picom.conf
+exec_always --no-startup-id picom --experimental-backend
 exec_always --no-startup-id redshift
 exec_always --no-startup-id feh --bg-fill --no-fehbg ~/images/wallpaper.png
 
