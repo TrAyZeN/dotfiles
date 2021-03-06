@@ -5,8 +5,8 @@ Plug 'tpope/vim-vinegar'
 
 " Swag stuff
 Plug 'morhetz/gruvbox'
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Bearded vim user fear
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -22,6 +22,8 @@ set expandtab
 set smarttab
 set autoindent
 set smartindent
+
+autocmd Filetype json setlocal ts=2 sw=2
 
 " max line length
 set textwidth=80
@@ -52,9 +54,8 @@ set autoread
 set noswapfile
 
 " Plugin configuration
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+
 let g:loaded_clipboard_provider = 1
-
-
 

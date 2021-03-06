@@ -20,6 +20,7 @@ dot_files=(
 .aliasrc
 .config/i3/config
 .config/nvim/init.vim
+.config/nvim/coc-settings.json
 .config/neofetch/config.conf
 .config/picom/picom.conf
 .config/polybar/config
