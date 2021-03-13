@@ -18,6 +18,7 @@ dot_files=(
 .bashrc
 .zshrc
 .aliasrc
+.config/mimeapps.list
 .config/i3/config
 .config/nvim/init.vim
 .config/nvim/coc-settings.json
