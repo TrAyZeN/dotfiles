@@ -89,3 +89,6 @@ source "$PLUGIN_DIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 compinit
 
+path+=("$HOME/.local/bin")
+export PATH
+
