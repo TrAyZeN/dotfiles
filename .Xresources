@@ -38,14 +38,14 @@
 *.color7:		#fff8e8
 *.color15:		#fff8e8
 
-
 ! -------------------- !
 !     urxvt config     !
 ! -------------------- !
 
 urxvt.depth: 32
 
-urxvt.font: xft:Roboto Mono:size=12
+!urxvt.font: xft:Roboto Mono:size=12
+urxvt.font: xft:mononoki Nerd Font:size=12
 
 urxvt.letterSpace:              0
 urxvt.lineSpace:                0
