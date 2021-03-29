@@ -1,4 +1,5 @@
 [Default Applications]
+application/pdf=opera.desktop;
 text/html=opera.desktop;
 text/x-markdown=typora.desktop;
 inode/directory=thunar.desktop;
@@ -55,3 +56,6 @@ x-scheme-handler/https=opera.desktop;
 x-scheme-handler/about=opera.desktop;
 x-scheme-handler/unknown=opera.desktop;
 x-scheme-handler/webcal=opera.desktop;
+
+[Added Associations]
+text/plain=vim.desktop;
