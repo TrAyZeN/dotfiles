@@ -20,6 +20,10 @@ dot_files=(
 .config/alacritty/alacritty.yml
 .icons/default/index.theme
 .config/gtk-3.0/settings.ini
+.config/openbox/autostart
+.config/openbox/environment
+.config/openbox/menu.xml
+.config/openbox/rc.xml
 )
 
 for df in ${dot_files[@]}; do
