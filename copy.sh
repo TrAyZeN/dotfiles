@@ -1,17 +1,5 @@
 #!/bin/bash
 
-mkdir -p \
-    .config \
-    .config/i3 \
-    .config/nvim \
-    .config/neofetch \
-    .config/picom \
-    .config/polybar \
-    .config/rofi \
-    .config/scripts \
-    .config/alacritty \
-    .icons/default
-
 dot_files=(
 .vimrc
 .Xresources
@@ -31,9 +19,11 @@ dot_files=(
 .config/scripts/startup.sh
 .config/alacritty/alacritty.yml
 .icons/default/index.theme
+.config/gtk-3.0/settings.ini
 )
 
 for df in ${dot_files[@]}; do
+    mkdir -p "$(dirname ${df})"
     cp ~/${df} ./${df} 2> /dev/null
 done
 
