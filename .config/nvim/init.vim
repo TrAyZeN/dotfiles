@@ -8,6 +8,8 @@ Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'wakatime/vim-wakatime'
+
 " Bearded vim user fear
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
