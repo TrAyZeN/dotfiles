@@ -56,6 +56,8 @@ bindkey -s '^o' 'lfcd\n'
 
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
+# Bind ctrl+backspace to delete word
+bindkey "^H" backward-kill-word
 
 # Convenient fg
 fg() {
