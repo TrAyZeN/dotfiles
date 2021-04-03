@@ -56,10 +56,25 @@ set encoding=utf8
 
 " Auto load file when it has been changed outside of vim
 set autoread
+" From https://www.reddit.com/r/neovim/comments/f0qx2y/automatically_reload_file_if_contents_changed/fgxa0f8?utm_source=share&utm_medium=web2x&context=3
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+autocmd FileChangedShellPost *
+        \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
 set noswapfile
 
 filetype plugin on
+
+" From https://vi.stackexchange.com/questions/21102/how-to-clang-format-the-current-buffer-on-save
+function FormatBuffer()
+  if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
+    let cursor_pos = getpos('.')
+    :%!clang-format
+    call setpos('.', cursor_pos)
+  endif
+endfunction
+
+autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.vert,*.frag :call FormatBuffer()
 
 let mapleader = ";"
 
