@@ -7,6 +7,7 @@ dot_files=(
 .zshrc
 .aliasrc
 .gtkrc-2.0
+.gitconfig
 .config/mimeapps.list
 .config/i3/config
 .config/nvim/init.vim

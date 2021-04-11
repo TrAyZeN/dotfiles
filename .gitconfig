@@ -1,0 +1,15 @@
+[user]
+	name = TrAyZeN
+
+[init]
+	defaultBranch = master
+
+[alias]
+	lg = log --all --oneline --graph --decorate
+	lgv = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %C(bold blue)<%an>%Creset %Cgreen(%cr)' --abbrev-commit
+	s = status
+	d = diff
+[core]
+	editor = vim
+[merge]
+	tool = vimdiff
