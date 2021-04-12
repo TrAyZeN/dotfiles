@@ -7,7 +7,7 @@ setopt hist_find_no_dups
 
 unsetopt beep
 
-PLUGIN_DIR="$HOME/.config/zsh/plugins"
+PLUGIN_DIR="/usr/share/zsh/plugins"
 
 # Git
 source "$PLUGIN_DIR/gitstatus/gitstatus.plugin.zsh"
