@@ -11,8 +11,15 @@ Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" git gud
+Plug 'tpope/vim-fugitive'
+
 " Clock is ticking
 Plug 'wakatime/vim-wakatime'
+
+" Language syntax
+Plug 'cespare/vim-toml'
+Plug 'tikhomirov/vim-glsl'
 
 " Bearded vim user fear
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -38,6 +45,7 @@ highlight ColorColumn ctermbg=red guibg=green
 
 " Indications
 set number
+set relativenumber
 syntax on
 set showmatch " show matching parenthesis
 set list
