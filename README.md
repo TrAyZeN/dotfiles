@@ -10,6 +10,8 @@ This repository contains configuration for:
 - openbox
 - alacritty
 
+My bash and vim configs are focused on minimalism.
+
 ## Key bindings
 
 | Key                                | Action        |
