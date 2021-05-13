@@ -20,6 +20,7 @@ Plug 'wakatime/vim-wakatime'
 " Language syntax
 Plug 'cespare/vim-toml'
 Plug 'tikhomirov/vim-glsl'
+Plug 'rust-lang/rust.vim'
 
 " Bearded vim user fear
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -50,6 +51,7 @@ syntax on
 set showmatch " show matching parenthesis
 set list
 set listchars=tab:..,trail:~
+set hlsearch " Highlight search
 
 " disable text format when
 " - hitting <Enter> in Insert mode
@@ -62,6 +64,12 @@ set wildmode=longest:full,full
 
 set encoding=utf8
 
+" Keep 5 lines below and above the cursor
+set scrolloff=5
+
+" Don't redraw when executing macros
+set lazyredraw
+
 " Auto load file when it has been changed outside of vim
 set autoread
 " From https://www.reddit.com/r/neovim/comments/f0qx2y/automatically_reload_file_if_contents_changed/fgxa0f8?utm_source=share&utm_medium=web2x&context=3
@@ -71,7 +79,8 @@ autocmd FileChangedShellPost *
 
 set noswapfile
 
-filetype plugin on
+syntax enable
+filetype plugin indent on
 
 " From https://vi.stackexchange.com/questions/21102/how-to-clang-format-the-current-buffer-on-save
 function FormatBuffer()
