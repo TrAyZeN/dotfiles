@@ -20,6 +20,7 @@ dot_files=(
 .config/rofi/trayzen.rasi
 .config/scripts/startup.sh
 .config/alacritty/alacritty.yml
+.config/kitty/kitty.conf
 .icons/default/index.theme
 .config/gtk-3.0/settings.ini
 .config/openbox/autostart
