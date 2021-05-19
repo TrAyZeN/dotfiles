@@ -9,6 +9,7 @@ This repository contains configuration for:
 - [picom](https://github.com/jonaburg/picom)
 - openbox
 - alacritty
+- kitty
 
 My bash and vim configs are focused on minimalism.
 
