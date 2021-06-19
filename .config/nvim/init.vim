@@ -21,6 +21,7 @@ Plug 'wakatime/vim-wakatime'
 Plug 'cespare/vim-toml'
 Plug 'tikhomirov/vim-glsl'
 Plug 'rust-lang/rust.vim'
+Plug 'elixir-editors/vim-elixir'
 
 " Bearded vim user fear
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -70,18 +71,21 @@ set scrolloff=5
 " Don't redraw when executing macros
 set lazyredraw
 
+syntax enable
+filetype plugin indent on
+
+" Goodbye trash file
+set noswapfile
+
 " Auto load file when it has been changed outside of vim
 set autoread
+
 " From https://www.reddit.com/r/neovim/comments/f0qx2y/automatically_reload_file_if_contents_changed/fgxa0f8?utm_source=share&utm_medium=web2x&context=3
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
 autocmd FileChangedShellPost *
         \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
-set noswapfile
-
-syntax enable
-filetype plugin indent on
-
+" Auto format with clang format
 " From https://vi.stackexchange.com/questions/21102/how-to-clang-format-the-current-buffer-on-save
 function FormatBuffer()
   if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
@@ -92,6 +96,15 @@ function FormatBuffer()
 endfunction
 
 autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.vert,*.frag :call FormatBuffer()
+
+" Commands
+command W w
+command Q q
+command WQ wq
+
+" Binds
+nnoremap <C-S> :w<CR>
+inoremap <C-S> <Esc>:w<CR>
 
 let mapleader = ";"
 
