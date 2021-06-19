@@ -56,6 +56,8 @@ x-scheme-handler/https=opera.desktop;
 x-scheme-handler/about=opera.desktop;
 x-scheme-handler/unknown=opera.desktop;
 x-scheme-handler/webcal=opera.desktop
+x-scheme-handler/postman=Postman.desktop
+x-scheme-handler/mailto=opera.desktop
 
 [Added Associations]
 text/plain=vim.desktop;
