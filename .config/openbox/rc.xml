@@ -281,6 +281,42 @@
         </finalactions>
       </action>
     </keybind>
+    <keybind key="W-Left">
+      <action name="UnmaximizeFull" />
+      <action name="MoveResizeTo">
+        <x>0</x>
+        <y>0</y>
+        <width>50%</width>
+        <height>100%</height>
+      </action>
+    </keybind>
+    <keybind key="W-Right">
+      <action name="UnmaximizeFull" />
+      <action name="MoveResizeTo">
+        <x>50%</x>
+        <y>0</y>
+        <width>50%</width>
+        <height>100%</height>
+      </action>
+    </keybind>
+    <keybind key="W-Up">
+      <action name="UnmaximizeFull" />
+      <action name="MoveResizeTo">
+        <x>0</x>
+        <y>0</y>
+        <width>100%</width>
+        <height>50%</height>
+      </action>
+    </keybind>
+    <keybind key="W-Down">
+      <action name="UnmaximizeFull" />
+      <action name="MoveResizeTo">
+        <x>0</x>
+        <y>50%</y>
+        <width>100%</width>
+        <height>50%</height>
+      </action>
+    </keybind>
     <!-- Keybindings for window switching with the arrow keys -->
     <keybind key="W-S-Right">
       <action name="DirectionalCycleWindows">
@@ -341,28 +377,28 @@
     <!-- Sound bindings -->
     <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">
-        <command>/home/trayzen/.config/scripts/change_volume.sh volume +2%</command>
+        <command>~/.config/scripts/change_volume.sh volume +2%</command>
       </action>
     </keybind>
     <keybind key="XF86AudioLowerVolume">
       <action name="Execute">
-        <command>/home/trayzen/.config/scripts/change_volume.sh volume -2%</command>
+        <command>~/.config/scripts/change_volume.sh volume -2%</command>
       </action>
     </keybind>
     <keybind key="XF86AudioMute">
       <action name="Execute">
-        <command>/home/trayzen/.config/scripts/change_volume.sh mute</command>
+        <command>~/.config/scripts/change_volume.sh mute</command>
       </action>
     </keybind>
     <!-- Luminosity bindings -->
     <keybind key="XF86MonBrightnessUp">
       <action name="Execute">
-        <command>xbacklight +10</command>
+        <command>~/.config/scripts/change_brightness.sh -inc 10</command>
       </action>
     </keybind>
     <keybind key="XF86MonBrightnessDown">
       <action name="Execute">
-        <command>xbacklight -10</command>
+        <command>~/.config/scripts/change_brightness.sh -dec 10</command>
       </action>
     </keybind>
     <!-- Media bindings -->
