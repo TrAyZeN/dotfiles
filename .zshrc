@@ -26,8 +26,16 @@ function set_prompt() {
 
     # Only working with 256 colors
     #PROMPT="%F{45}%n%f:%F{184}%d%f %F{208}${STATUS}%f%(?.%F{46}~>%f.%F{197}~>%f) "
+
+    SPLIT_PWD=($(echo $PWD | tr "/" "\n"))
+    SHORT_PWD="/"
+    for part in "${SPLIT_PWD[@]:0:${#SPLIT_PWD[@]}-1}"; do
+        SHORT_PWD+="${part:0:1}/"
+    done
+    SHORT_PWD+=${SPLIT_PWD[-1]}
+
     # Shorten prompt
-    PROMPT="%F{184}%d%f %F{208}${STATUS}%f%(?.%F{46}~>%f.%F{197}~>%f) "
+    PROMPT="%F{184}${SHORT_PWD}%f %F{208}${STATUS}%f%(?.%F{46}~>%f.%F{197}~>%f) "
     RPROMPT=""
 
     setopt no_prompt_{bang,subst} prompt_percent  # enable/disable correct prompt expansions
@@ -54,6 +62,7 @@ lfcd () {
 }
 bindkey -s '^o' 'lfcd\n'
 
+# Bind ctrl+arrow to move by word
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
