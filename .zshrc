@@ -7,6 +7,9 @@ setopt hist_find_no_dups
 
 unsetopt beep
 
+# Word delimiters
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
 PLUGIN_DIR="/usr/share/zsh/plugins"
 
 # Git
