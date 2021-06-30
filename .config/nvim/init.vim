@@ -97,16 +97,19 @@ endfunction
 
 autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.vert,*.frag :call FormatBuffer()
 
+let mapleader = ";"
+
 " Commands
 command W w
 command Q q
 command WQ wq
 
 " Binds
-nnoremap <C-S> :w<CR>
+" ctrl+s to save
+noremap <C-S> :w<CR>
 inoremap <C-S> <Esc>:w<CR>
-
-let mapleader = ";"
+" Toggle comment
+map <C-_> <Leader>c<space>
 
 " Plugin configuration
 let g:airline#extensions#tabline#enabled = 1
