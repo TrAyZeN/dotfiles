@@ -9,5 +9,6 @@ alias \
     mkdir="mkdir -p" \
     ls="exa --git --header" \
     py="python3" \
-    clif="~/rustc_codegen_cranelift/build/cargo.sh"
+    clif="~/rustc_codegen_cranelift/build/cargo.sh" \
+    "cd.."="cd .."
 
