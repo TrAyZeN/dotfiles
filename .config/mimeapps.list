@@ -57,7 +57,22 @@ x-scheme-handler/about=opera.desktop;
 x-scheme-handler/unknown=opera.desktop;
 x-scheme-handler/webcal=opera.desktop
 x-scheme-handler/postman=Postman.desktop
-x-scheme-handler/mailto=opera.desktop
+x-scheme-handler/mailto=userapp-Thunderbird-K9OT50.desktop
+message/rfc822=userapp-Thunderbird-K9OT50.desktop
+x-scheme-handler/news=userapp-Thunderbird-B4VD50.desktop
+x-scheme-handler/snews=userapp-Thunderbird-B4VD50.desktop
+x-scheme-handler/nntp=userapp-Thunderbird-B4VD50.desktop
+x-scheme-handler/feed=userapp-Thunderbird-GRQJ50.desktop
+application/rss+xml=userapp-Thunderbird-GRQJ50.desktop
+application/x-extension-rss=userapp-Thunderbird-GRQJ50.desktop
 
 [Added Associations]
 text/plain=vim.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-K9OT50.desktop;
+message/rfc822=userapp-Thunderbird-K9OT50.desktop;
+x-scheme-handler/news=userapp-Thunderbird-B4VD50.desktop;
+x-scheme-handler/snews=userapp-Thunderbird-B4VD50.desktop;
+x-scheme-handler/nntp=userapp-Thunderbird-B4VD50.desktop;
+x-scheme-handler/feed=userapp-Thunderbird-GRQJ50.desktop;
+application/rss+xml=userapp-Thunderbird-GRQJ50.desktop;
+application/x-extension-rss=userapp-Thunderbird-GRQJ50.desktop;
