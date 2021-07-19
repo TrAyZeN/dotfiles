@@ -3,6 +3,9 @@ call plug#begin()
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-vinegar'
 
+" Surround things
+Plug 'tpope/vim-surround'
+
 " Commenting made easy
 Plug 'preservim/nerdcommenter'
 
@@ -25,6 +28,7 @@ Plug 'elixir-editors/vim-elixir'
 
 " Bearded vim user fear
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 call plug#end()
 
 colorscheme gruvbox
@@ -80,6 +84,8 @@ set noswapfile
 " Auto load file when it has been changed outside of vim
 set autoread
 
+autocmd FileType c,cc,cpp setlocal path+=/usr/include include &
+
 " From https://www.reddit.com/r/neovim/comments/f0qx2y/automatically_reload_file_if_contents_changed/fgxa0f8?utm_source=share&utm_medium=web2x&context=3
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
 autocmd FileChangedShellPost *
@@ -95,7 +101,7 @@ function FormatBuffer()
   endif
 endfunction
 
-autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.vert,*.frag :call FormatBuffer()
+autocmd BufWritePre *.h,*.hpp,*.c,*.cc,*.cpp,*.vert,*.frag :call FormatBuffer()
 
 let mapleader = ";"
 
