@@ -34,7 +34,9 @@ call plug#end()
 colorscheme gruvbox
 set bg=dark
 
-" Indentation
+"""""""""""""""""""""""
+" Indentation and tabs
+"""""""""""""""""""""""
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -75,7 +77,6 @@ set scrolloff=5
 " Don't redraw when executing macros
 set lazyredraw
 
-syntax enable
 filetype plugin indent on
 
 " Goodbye trash file
@@ -105,19 +106,36 @@ autocmd BufWritePre *.h,*.hpp,*.c,*.cc,*.cpp,*.vert,*.frag :call FormatBuffer()
 
 let mapleader = ";"
 
-" Commands
+"""""""""""""""""""""""
+" Remaps and commands
+"""""""""""""""""""""""
+
+" Avoid mistypes
 command W w
 command Q q
 command WQ wq
 
-" Binds
 " ctrl+s to save
 noremap <C-S> :w<CR>
 inoremap <C-S> <Esc>:w<CR>
-" Toggle comment
+
+" ctrl+/ toggle comment
 map <C-_> <Leader>c<space>
 
-" Plugin configuration
+" Bash like keys for the command line
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+cnoremap <C-K> <C-U>
+cnoremap <C-P> <Up>
+cnoremap <C-N> <Down>
+
+" Move selected lines using alt+[jk]
+vnoremap <M-j> :m '>+1<CR>gv=gv
+vnoremap <M-k> :m '<-2<CR>gv=gv
+
+"""""""""""""""""""""""
+" Plugins configuration
+"""""""""""""""""""""""
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
