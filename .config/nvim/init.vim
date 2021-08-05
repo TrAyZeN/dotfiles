@@ -115,6 +115,9 @@ command W w
 command Q q
 command WQ wq
 
+" Close buffer but don't close split
+command Bd bp|bd #
+
 " ctrl+s to save
 noremap <C-S> :w<CR>
 inoremap <C-S> <Esc>:w<CR>
@@ -132,6 +135,10 @@ cnoremap <C-N> <Down>
 " Move selected lines using alt+[jk]
 vnoremap <M-j> :m '>+1<CR>gv=gv
 vnoremap <M-k> :m '<-2<CR>gv=gv
+
+" Navigate buffers with ctrl+[np]
+nnoremap <silent> <C-N> :bnext<CR>
+nnoremap <silent> <C-P> :bprevious<CR>
 
 """""""""""""""""""""""
 " Plugins configuration
