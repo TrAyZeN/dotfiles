@@ -51,8 +51,8 @@ bindsym $mod+BackSpace kill
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+d exec /home/trayzen/.config/rofi/launchers/text/launcher.sh
+bindsym $mod+d exec --no-startup-id rofi -show run
+# bindsym $mod+d exec /home/trayzen/.config/rofi/launchers/text/launcher.sh
 
 # change focus with vim keys
 bindsym $mod+h focus left
@@ -153,6 +153,10 @@ mode "volume" {
 }
 
 bindsym $mod+Shift+v mode "volume"
+
+# Screenshot
+bindsym Print exec flameshot gui
+bindsym Ctrl+Print exec flameshot gui
 
 title_align center
 
