@@ -248,10 +248,24 @@ label-open = ⏻
 [module/i3]
 type = internal/i3
 
+; Sort the workspaces by index instead of the default
+; sorting that groups the workspaces by output
+; Default: false
 index-sort = true
-enable-click = true
+
+; Create click handler used to focus workspace
+; Default: true
+enable-click = false
+
+; Create scroll handlers used to cycle workspaces
+; Default: true
 enable-scroll = false
+
+; Wrap around when reaching the first/last workspace
+; Default: true
 wrapping-scroll = false
+
+format = <label-state>
 
 ; focused = Active workspace on focused monitor
 label-focused = 
@@ -260,6 +274,9 @@ label-focused-padding = 1
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = 
 label-unfocused-padding = 1
+
+label-urgent = 
+label-urgent-padding = 1
 
 [module/memory]
 type = internal/memory
