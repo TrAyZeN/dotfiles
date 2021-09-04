@@ -84,6 +84,16 @@ fg() {
     fi
 }
 
+# mkdir and then cd
+mkcd() {
+    mkdir -p $1 && cd $1
+}
+
+# mktemp and then cd
+mkcdtemp() {
+    cd $(mktemp -d)
+}
+
 # Load aliases
 [ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
 
@@ -95,12 +105,12 @@ zstyle :compinstall filename "$HOME/.zshrc"
 
 # fzf-tab needs to loaded after compinit, but before plugins which will wrap
 # widgets, such as zsh-autosuggestions or fast-syntax-highlighting
-source "$PLUGIN_DIR/fzf-tab/fzf-tab.plugin.zsh"
+# source "$PLUGIN_DIR/fzf-tab/fzf-tab.plugin.zsh"
 
 zstyle ":completion:*:git-checkout:*" sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 
 source "$PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
 source "$PLUGIN_DIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
@@ -109,4 +119,3 @@ compinit
 
 path+=("$HOME/.local/bin")
 export PATH
-
