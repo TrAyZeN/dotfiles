@@ -17,6 +17,9 @@ Plug 'tpope/vim-surround'
 " Commenting made easy
 Plug 'preservim/nerdcommenter'
 
+" Run commands asynchronously
+Plug 'tpope/vim-dispatch'
+
 " Swag stuff
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
@@ -158,8 +161,12 @@ nnoremap <silent> <C-N> :bnext<CR>
 nnoremap <silent> <C-P> :bprevious<CR>
 
 " make mappings
-nnoremap <Leader>ma :make<CR>
-nnoremap <Leader>mr :make run<CR>
+nnoremap <Leader>ma :Make<CR>
+nnoremap <Leader>mr :Make run<CR>
+
+" Quickfix list mappings
+nnoremap <C-J> :cn<CR>
+nnoremap <C-K> :cp<CR>
 
 """""""""""""""""""""""
 " Plugins configuration
