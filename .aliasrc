@@ -13,3 +13,7 @@ alias \
     clif="~/rustc_codegen_cranelift/build/cargo.sh" \
     "cd.."="cd .."
 
+# Mistypes
+alias \
+    sl="ls"
+
