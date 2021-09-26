@@ -34,6 +34,9 @@ Plug 'vim-utils/vim-man'
 " Clock is ticking
 Plug 'wakatime/vim-wakatime'
 
+" Manage personal wiki
+Plug 'vimwiki/vimwiki'
+
 " Intialize plugin system
 call plug#end()
 
@@ -254,4 +257,6 @@ command -nargs=0 CreateFunctionDefinition :call CreateFunctionDefinition()
 nnoremap <Leader>ch :CreateSrcAndHeaderOpen<Space>
 nnoremap <Leader>co :OpenSrcAndHeader<Space>
 nnoremap <Leader>cf :CreateFunctionDefinition<CR>
+
+command -nargs=0 Todo :vimgrep /TODO/gj src/**/*.[ch] | copen
 
