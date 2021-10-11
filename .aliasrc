@@ -15,5 +15,5 @@ alias \
 
 # Mistypes
 alias \
-    sl="ls"
-
+    sl="ls" \
+    maek="make"
