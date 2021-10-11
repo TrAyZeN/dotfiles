@@ -31,11 +31,12 @@ Plug 'tpope/vim-fugitive'
 " Read man pages inside vim
 Plug 'vim-utils/vim-man'
 
-" Clock is ticking
-Plug 'wakatime/vim-wakatime'
-
 " Manage personal wiki
 Plug 'vimwiki/vimwiki'
+
+" UNIX helpers
+" rename file with :Rename
+Plug 'tpope/vim-eunuch'
 
 " Intialize plugin system
 call plug#end()
@@ -66,7 +67,7 @@ set relativenumber
 syntax on
 set showmatch " show matching parenthesis
 set list
-set listchars=tab:..,trail:~
+set listchars=tab:..,trail:~,eol:$
 set hlsearch " Highlight search
 
 " disable text format when
@@ -166,10 +167,20 @@ nnoremap <silent> <C-P> :bprevious<CR>
 " make mappings
 nnoremap <Leader>ma :Make<CR>
 nnoremap <Leader>mr :Make run<CR>
+nnoremap <Leader>mt :Make check<R>
 
 " Quickfix list mappings
 nnoremap <C-J> :cn<CR>
 nnoremap <C-K> :cp<CR>
+
+" fugitive mappings
+nnoremap <Leader>gg :Git<CR>
+nnoremap <Leader>gb :Git blame<CR>
+nnoremap <Leader>gd :Gvdiffsplit<CR>
+
+" File mappings
+nnoremap <Leader>fr :Rename<space>
+nnoremap <Leader>fp :Chmod<space>
 
 """""""""""""""""""""""
 " Plugins configuration
@@ -178,6 +189,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 let g:loaded_clipboard_provider = 1
+
+let g:vim_man_cmd = 'man'
 
 " Create default mappings
 let g:NERDCreateDefaultMappings = 1
@@ -259,4 +272,3 @@ nnoremap <Leader>co :OpenSrcAndHeader<Space>
 nnoremap <Leader>cf :CreateFunctionDefinition<CR>
 
 command -nargs=0 Todo :vimgrep /TODO/gj src/**/*.[ch] | copen
-
