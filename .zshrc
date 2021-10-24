@@ -97,6 +97,14 @@ mkcdtemp() {
 # Load aliases
 [ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
 
+export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/
+
+export EDITOR="nvim"
+
+# For some reason when setting EDITOR environment variables disables Emacs style
+# bindings
+bindkey -e
+
 # Completion
 autoload -Uz compinit
 fpath=($PLUGIN_DIR/zsh-completions/src $fpath)
