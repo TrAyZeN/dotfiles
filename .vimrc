@@ -38,6 +38,9 @@ Plug 'vimwiki/vimwiki'
 " rename file with :Rename
 Plug 'tpope/vim-eunuch'
 
+" Show registers content
+Plug 'junegunn/vim-peekaboo'
+
 " Intialize plugin system
 call plug#end()
 
@@ -164,23 +167,28 @@ vnoremap <M-k> :m '<-2<CR>gv=gv
 nnoremap <silent> <C-N> :bnext<CR>
 nnoremap <silent> <C-P> :bprevious<CR>
 
+" Quickfix list mappings
+nnoremap <C-J> :cn<CR>
+nnoremap <C-K> :cp<CR>
+
 " make mappings
 nnoremap <Leader>ma :Make<CR>
 nnoremap <Leader>mr :Make run<CR>
 nnoremap <Leader>mt :Make check<R>
 
-" Quickfix list mappings
-nnoremap <C-J> :cn<CR>
-nnoremap <C-K> :cp<CR>
-
 " fugitive mappings
 nnoremap <Leader>gg :Git<CR>
 nnoremap <Leader>gb :Git blame<CR>
 nnoremap <Leader>gd :Gvdiffsplit<CR>
+nnoremap <Leader>ga :Git add %<CR>
+nnoremap <Leader>gc :Git commit<CR>
 
 " File mappings
 nnoremap <Leader>fr :Rename<space>
 nnoremap <Leader>fp :Chmod<space>
+
+" Fix key binding conflict between vim-vinegar and vimwiki
+nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
 
 """""""""""""""""""""""
 " Plugins configuration
@@ -203,6 +211,9 @@ let g:NERDCompactSexyComs = 1
 let g:NERDDefaultAlgin = 'left'
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
+
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown',
+                        \ 'ext': '.md' }]
 
 function CreateSrcAndHeaderOpen(filename)
     call CreateSrcAndHeader(a:filename)
@@ -262,13 +273,27 @@ function CreateFunctionDefinition()
     call cursor(line("$") - 1, "4")
 endfunction
 
+function OpenAssociatedSrcHeader()
+    let l:extension = expand("%:e")
+
+    if l:extension == "h"
+        silent exec "topleft sp %<.c"
+    elseif l:extension == "c"
+        silent exec "rightbelow sp %<.h"
+    else
+        " TODO: Error
+    endif
+endfunction
+
 command -nargs=1 -complete=file CreateSrcAndHeader :call CreateSrcAndHeader(<q-args>)
 command -nargs=1 -complete=file CreateSrcAndHeaderOpen :call CreateSrcAndHeaderOpen(<q-args>)
 command -nargs=1 -complete=file OpenSrcAndHeader :call OpenSrcAndHeader(<q-args>)
 command -nargs=0 CreateFunctionDefinition :call CreateFunctionDefinition()
+command -nargs=0 OpenAssociatedSrcHeader :call OpenAssociatedSrcHeader
 
 nnoremap <Leader>ch :CreateSrcAndHeaderOpen<Space>
 nnoremap <Leader>co :OpenSrcAndHeader<Space>
 nnoremap <Leader>cf :CreateFunctionDefinition<CR>
+nnoremap <Leader>ca :OpenAssociatedSrcHeader<CR>
 
 command -nargs=0 Todo :vimgrep /TODO/gj src/**/*.[ch] | copen
