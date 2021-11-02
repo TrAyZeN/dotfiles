@@ -41,6 +41,14 @@ Plug 'tpope/vim-eunuch'
 " Show registers content
 Plug 'junegunn/vim-peekaboo'
 
+" Fasto file opening
+Plug 'ctrlpvim/ctrlp.vim'
+
+Plug 'tpope/vim-projectionist'
+
+" Stop typing same things all day
+Plug 'SirVer/ultisnips'
+
 " Intialize plugin system
 call plug#end()
 
@@ -186,6 +194,10 @@ nnoremap <Leader>gc :Git commit<CR>
 " File mappings
 nnoremap <Leader>fr :Rename<space>
 nnoremap <Leader>fp :Chmod<space>
+nnoremap <Leader>fa :A<CR>
+
+" ctrlp remap
+nnoremap <Leader>p :CtrlP<CR>
 
 " Fix key binding conflict between vim-vinegar and vimwiki
 nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
@@ -214,6 +226,13 @@ let g:NERDToggleCheckAllLines = 1
 
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown',
                         \ 'ext': '.md' }]
+
+let g:ctrlp_map = '<Leader>p'
+set wildignore+=*.so,*.o
+let g:ctrlp_custom_ignore = {
+            \ 'dir': '\v[\/]\.(git|hg|svn)$',
+            \ 'file': '\v\.(o|so)$',
+            \ }
 
 function CreateSrcAndHeaderOpen(filename)
     call CreateSrcAndHeader(a:filename)
@@ -273,18 +292,6 @@ function CreateFunctionDefinition()
     call cursor(line("$") - 1, "4")
 endfunction
 
-function OpenAssociatedSrcHeader()
-    let l:extension = expand("%:e")
-
-    if l:extension == "h"
-        silent exec "topleft sp %<.c"
-    elseif l:extension == "c"
-        silent exec "rightbelow sp %<.h"
-    else
-        " TODO: Error
-    endif
-endfunction
-
 command -nargs=1 -complete=file CreateSrcAndHeader :call CreateSrcAndHeader(<q-args>)
 command -nargs=1 -complete=file CreateSrcAndHeaderOpen :call CreateSrcAndHeaderOpen(<q-args>)
 command -nargs=1 -complete=file OpenSrcAndHeader :call OpenSrcAndHeader(<q-args>)
@@ -294,6 +301,5 @@ command -nargs=0 OpenAssociatedSrcHeader :call OpenAssociatedSrcHeader
 nnoremap <Leader>ch :CreateSrcAndHeaderOpen<Space>
 nnoremap <Leader>co :OpenSrcAndHeader<Space>
 nnoremap <Leader>cf :CreateFunctionDefinition<CR>
-nnoremap <Leader>ca :OpenAssociatedSrcHeader<CR>
 
 command -nargs=0 Todo :vimgrep /TODO/gj src/**/*.[ch] | copen
