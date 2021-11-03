@@ -41,10 +41,12 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+BackSpace kill
+
+bindsym $mod+Ctrl+l exec i3lock
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
@@ -173,9 +175,8 @@ client.unfocused        #223333 #223333 #aaaaaa #2e9ef4   #000000
 #
 # i3 gaps
 #
-gaps inner 6
-gaps outer 2
-
+gaps inner 8
+gaps outer 4
 for_window [class=".*"] border pixel 0
 
 #
@@ -193,7 +194,7 @@ assign [class="discord"] $ws3
 # Startup
 #
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec_always --no-startup-id picom --experimental-backend
+# exec_always --no-startup-id picom --experimental-backend
 exec_always --no-startup-id redshift
 exec_always --no-startup-id feh --bg-fill --no-fehbg ~/images/wallpaper.png
 
