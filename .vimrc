@@ -42,12 +42,16 @@ Plug 'tpope/vim-eunuch'
 Plug 'junegunn/vim-peekaboo'
 
 " Fasto file opening
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 Plug 'tpope/vim-projectionist'
 
 " Stop typing same things all day
 Plug 'SirVer/ultisnips'
+
+" More text objects
+Plug 'wellle/targets.vim'
 
 " Intialize plugin system
 call plug#end()
@@ -66,6 +70,7 @@ set autoindent
 set smartindent
 
 autocmd Filetype json setlocal ts=2 sw=2
+autocmd Filetype md setlocal ts=2 sw=2
 
 " max line length
 set textwidth=80
@@ -192,12 +197,14 @@ nnoremap <Leader>ga :Git add %<CR>
 nnoremap <Leader>gc :Git commit<CR>
 
 " File mappings
-nnoremap <Leader>fr :Rename<space>
-nnoremap <Leader>fp :Chmod<space>
+nnoremap <Leader>fR :Rename<space>
+nnoremap <Leader>fm :Chmod<space>
 nnoremap <Leader>fa :A<CR>
+nnoremap <Leader>ff :RipGrep<CR>
+nnoremap <Leader>fr :History<CR>
 
-" ctrlp remap
-nnoremap <Leader>p :CtrlP<CR>
+" Buffer mappings
+nnoremap <Leader>bo :%bd <bar> e#<CR>
 
 " Fix key binding conflict between vim-vinegar and vimwiki
 nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
@@ -226,6 +233,7 @@ let g:NERDToggleCheckAllLines = 1
 
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown',
                         \ 'ext': '.md' }]
+let g:vimwiki_global_ext = 0
 
 let g:ctrlp_map = '<Leader>p'
 set wildignore+=*.so,*.o
@@ -233,6 +241,28 @@ let g:ctrlp_custom_ignore = {
             \ 'dir': '\v[\/]\.(git|hg|svn)$',
             \ 'file': '\v\.(o|so)$',
             \ }
+
+let g:projectionist_heuristics = {
+            \     "src/**/*.c": {
+            \         "src/*.c": {
+            \             "alternate": "src/{}.h",
+            \             "type": "source"
+            \         },
+            \         "src/*.h": {
+            \             "alternate": "src/{}.c",
+            \             "type": "header"
+            \         }
+            \     }
+            \ }
+
+let g:fzf_preview_window = []
+let g:fzf_layout = { 'down': '30%' }
+
+command! -bang -nargs=* RipGrep
+            \ call fzf#run(fzf#wrap({ 'source': 'rg --files --hidden --no-ignore-vcs' }))
+
+    " \ call fzf#vim#grep('rg --files --hidden --no-ignore-vcs', 1,
+    " \ fzf#vim#with_preview(), <bang>0)
 
 function CreateSrcAndHeaderOpen(filename)
     call CreateSrcAndHeader(a:filename)
