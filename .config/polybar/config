@@ -288,7 +288,7 @@ interval = 2
 format = <label> <bar-used>
 
 [module/volume]
-type = internal/alsa
+type = internal/pulseaudio
 
 format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%%
@@ -303,7 +303,7 @@ ramp-volume-6 = 墳
 
 [module/wired-network]
 type = internal/network
-interface = enp3s0
+interface = enp0s20f0u3u4
 
 interval = 5
 
@@ -316,7 +316,7 @@ label-disconnected = 
 
 [module/wireless-network]
 type = internal/network
-interface = wlan1
+interface = wlan0
 
 interval = 5
 
