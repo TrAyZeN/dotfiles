@@ -53,6 +53,10 @@ Plug 'SirVer/ultisnips'
 " More text objects
 Plug 'wellle/targets.vim'
 
+Plug 'igankevich/mesonic'
+
+Plug 'pechorin/any-jump.vim'
+
 " Intialize plugin system
 call plug#end()
 
@@ -69,8 +73,7 @@ set smarttab
 set autoindent
 set smartindent
 
-autocmd Filetype json setlocal ts=2 sw=2
-autocmd Filetype md setlocal ts=2 sw=2
+autocmd Filetype json,md,toml,yaml,html setlocal ts=2 sw=2
 
 " max line length
 set textwidth=80
@@ -144,6 +147,20 @@ set keywordprg=:Man
 
 autocmd FileType c,cc,cpp setlocal path+=/usr/include include &
 
+" Auto format with clang format
+" From https://vi.stackexchange.com/questions/21102/how-to-clang-format-the-current-buffer-on-save
+function FormatBuffer()
+  if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
+    let cursor_pos = getpos('.')
+    :%!clang-format
+    call setpos('.', cursor_pos)
+  endif
+endfunction
+
+autocmd BufWritePre *.h,*.hpp,*.c,*.cc,*.cpp,*.vert,*.frag :call FormatBuffer()
+
+let $MANSECT="2:3:1:8:5:4:9:6:7"
+
 let mapleader = "\<Space>"
 
 """""""""""""""""""""""
@@ -161,6 +178,8 @@ command Bd bp|bd #
 " ctrl+s to save
 noremap <C-S> :w<CR>
 inoremap <C-S> <Esc>:w<CR>
+
+nnoremap Y y$
 
 " ctrl+/ toggle comment
 map <C-_> <Leader>c<space>
@@ -205,6 +224,8 @@ nnoremap <Leader>fr :History<CR>
 
 " Buffer mappings
 nnoremap <Leader>bo :%bd <bar> e#<CR>
+
+nnoremap <Leader>s :exec "vimgrep /" . expand("<cword>") . "/g src/**/*.c"<CR>:copen<CR>
 
 " Fix key binding conflict between vim-vinegar and vimwiki
 nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
