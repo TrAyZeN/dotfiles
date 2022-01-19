@@ -127,3 +127,6 @@ compinit
 
 path+=("$HOME/.local/bin")
 export PATH
+
+export PGDATA="$HOME/postgres_data"
+export PGHOST="/tmp"
