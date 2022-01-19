@@ -18,7 +18,9 @@ dot_files=(
 .config/polybar/launch.sh
 .config/rofi/config.rasi
 .config/rofi/trayzen.rasi
+.config/rofi/scripts/book.sh
 .config/scripts/startup.sh
+.config/scripts/rofi-book.sh
 .config/alacritty/alacritty.yml
 .config/kitty/kitty.conf
 .icons/default/index.theme

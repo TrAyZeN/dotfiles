@@ -56,6 +56,8 @@ bindsym $mod+Ctrl+l exec i3lock
 bindsym $mod+d exec --no-startup-id rofi -show run
 # bindsym $mod+d exec /home/trayzen/.config/rofi/launchers/text/launcher.sh
 
+bindsym $mod+b exec /home/trayzen/.config/scripts/rofi-book.sh
+
 # change focus with vim keys
 bindsym $mod+h focus left
 bindsym $mod+j focus down

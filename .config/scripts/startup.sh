@@ -10,4 +10,3 @@ picom --config ~/.config/picom/picom.conf
 
 # Task bar
 exec ~/.config/polybar/launch.sh
-
