@@ -41,7 +41,7 @@ Plug 'tpope/vim-eunuch'
 " Show registers content
 Plug 'junegunn/vim-peekaboo'
 
-" Fasto file opening
+" Fasto file fuzzy finding
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -114,6 +114,13 @@ set noswapfile
 " Auto load file when it has been changed outside of vim
 set autoread
 
+" Set completeopt to have a better completion experience
+" :help completeopt
+" menuone: popup even when there's only one match
+" noinsert: Do not insert text until a selection is made
+" noselect: Do not select, force user to select one from the menu
+set completeopt=menuone,noinsert,noselect
+
 " Enable spell checking
 set spelllang=en_us ",fr
 set spell
@@ -124,15 +131,6 @@ set encoding=utf8
 " - hitting <Enter> in Insert mode
 " - hitting 'o' or 'O' in Normal mode
 autocmd FileType * setlocal formatoptions-=ro
-
-" display line numbers on the left
-set number
-
-" show matching parenthesis
-set showmatch
-" Command completion
-set wildmenu
-set wildmode=longest:full,full
 
 " Auto load file when it has been changed outside of vim
 set autoread
@@ -181,6 +179,9 @@ inoremap <C-S> <Esc>:w<CR>
 
 nnoremap Y y$
 
+" Go to file under cursor and create it if not existing
+" nnoremap gf :e <cfile><CR>
+
 " ctrl+/ toggle comment
 map <C-_> <Leader>c<space>
 
@@ -206,7 +207,7 @@ nnoremap <C-K> :cp<CR>
 " make mappings
 nnoremap <Leader>ma :Make<CR>
 nnoremap <Leader>mr :Make run<CR>
-nnoremap <Leader>mt :Make check<R>
+nnoremap <Leader>mt :Make test<CR>
 
 " fugitive mappings
 nnoremap <Leader>gg :Git<CR>
@@ -280,7 +281,7 @@ let g:fzf_preview_window = []
 let g:fzf_layout = { 'down': '30%' }
 
 command! -bang -nargs=* RipGrep
-            \ call fzf#run(fzf#wrap({ 'source': 'rg --files --hidden --no-ignore-vcs' }))
+            \ call fzf#run(fzf#wrap({ 'source': 'rg --files --hidden' }))
 
     " \ call fzf#vim#grep('rg --files --hidden --no-ignore-vcs', 1,
     " \ fzf#vim#with_preview(), <bang>0)
