@@ -10,8 +10,8 @@
 	s = status
 	d = diff
 	b = branch
-	c = commit
-	co = checkout
+	co = commit
+	ch = checkout
 # Useful aliases
 	lg = log --all --oneline --graph --decorate
 	lgv = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %C(bold blue)<%an>%Creset %Cgreen(%cr)' --abbrev-commit
