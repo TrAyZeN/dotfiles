@@ -9,8 +9,10 @@
 	a = add
 	s = status
 	d = diff
+	dc = diff --cached
 	b = branch
 	co = commit
+	com = commit -m
 	ch = checkout
 # Useful aliases
 	lg = log --all --oneline --graph --decorate
