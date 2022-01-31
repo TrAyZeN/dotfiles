@@ -1,4 +1,5 @@
 call plug#begin()
+
 " Movement speed
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-vinegar'
@@ -8,6 +9,9 @@ Plug 'tpope/vim-surround'
 
 " Commenting made easy
 Plug 'preservim/nerdcommenter'
+
+" Run commands asynchronously
+Plug 'tpope/vim-dispatch'
 
 " Swag stuff
 Plug 'morhetz/gruvbox'
@@ -20,19 +24,61 @@ Plug 'tpope/vim-fugitive'
 " Clock is ticking
 Plug 'wakatime/vim-wakatime'
 
-" Language syntax
+" Manage personal wiki
+Plug 'vimwiki/vimwiki'
+
+" UNIX helpers
+" rename file with :Rename
+Plug 'tpope/vim-eunuch'
+
+" Show registers content
+Plug 'junegunn/vim-peekaboo'
+
+" Fasto file fuzzy finding
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Plug 'tpope/vim-projectionist'
+
+" Stop typing same things all day
+" Plug 'SirVer/ultisnips'
+
+" More text objects
+Plug 'wellle/targets.vim'
+
+" Languages
 Plug 'cespare/vim-toml'
 Plug 'tikhomirov/vim-glsl'
 Plug 'rust-lang/rust.vim'
 Plug 'elixir-editors/vim-elixir'
 
 " Bearded vim user fear
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'pechorin/any-jump.vim'
+
+" Quickstart configurations for the Nvim LSP client
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+
+" Support snippets from LSP
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+" Plug 'rafamadriz/friendly-snippets'
+
+" Tools for better development in rust
+Plug 'simrat39/rust-tools.nvim'
 
 call plug#end()
 
 colorscheme gruvbox
 set bg=dark
+
+filetype plugin indent on
 
 """""""""""""""""""""""
 " Indentation and tabs
@@ -44,12 +90,12 @@ set smarttab
 set autoindent
 set smartindent
 
-autocmd Filetype json setlocal ts=2 sw=2
+autocmd Filetype json,md,toml,yaml,html setlocal ts=2 sw=2
 
 " max line length
 set textwidth=80
 set colorcolumn=80
-highlight ColorColumn ctermbg=red guibg=green
+highlight ColorColumn ctermbg=DarkGray guibg=green
 
 " Indications
 set number
@@ -57,7 +103,7 @@ set relativenumber
 syntax on
 set showmatch " show matching parenthesis
 set list
-set listchars=tab:..,trail:~
+set listchars=tab:..,trail:~,eol:$
 set hlsearch " Highlight search
 
 " disable text format when
@@ -69,6 +115,16 @@ autocmd FileType * setlocal formatoptions-=ro
 set wildmenu
 set wildmode=longest:full,full
 
+" Set completeopt to have a better completion experience
+" :help completeopt
+" menuone: popup even when there's only one match
+" noinsert: Do not insert text until a selection is made
+" noselect: Do not select, force user to select one from the menu
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing extra messages when using completion
+set shortmess+=c
+
 set encoding=utf8
 
 " Keep 5 lines below and above the cursor
@@ -77,20 +133,33 @@ set scrolloff=5
 " Don't redraw when executing macros
 set lazyredraw
 
-filetype plugin indent on
-
 " Goodbye trash file
 set noswapfile
 
 " Auto load file when it has been changed outside of vim
 set autoread
 
-autocmd FileType c,cc,cpp setlocal path+=/usr/include include &
+set encoding=utf8
 
-" From https://www.reddit.com/r/neovim/comments/f0qx2y/automatically_reload_file_if_contents_changed/fgxa0f8?utm_source=share&utm_medium=web2x&context=3
-autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
-autocmd FileChangedShellPost *
-        \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+" Set updatetime for CursorHold
+" 300ms of no cursor movement to trigger CursorHold
+set updatetime=300
+
+" Show diagnostic popup on cursor hover
+autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+
+" have a fixed column for the diagnostics to appear in
+" this removes the jitter when warnings/errors flow in
+set signcolumn=yes
+
+" Use shift+k to open man page under the cursor
+" set keywordprg=:Man
+
+" Enable type inlay hints
+" autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
+" \ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
+
+autocmd FileType c,cc,cpp setlocal path+=/usr/include include &
 
 " Auto format with clang format
 " From https://vi.stackexchange.com/questions/21102/how-to-clang-format-the-current-buffer-on-save
@@ -104,7 +173,12 @@ endfunction
 
 autocmd BufWritePre *.h,*.hpp,*.c,*.cc,*.cpp,*.vert,*.frag :call FormatBuffer()
 
-let mapleader = ";"
+let $MANSECT="2:3:1:8:5:4:9:6:7"
+
+" Use shift+k to open man page under the cursor
+set keywordprg=:Man
+
+let mapleader = "\<Space>"
 
 """""""""""""""""""""""
 " Remaps and commands
@@ -121,6 +195,11 @@ command Bd bp|bd #
 " ctrl+s to save
 noremap <C-S> :w<CR>
 inoremap <C-S> <Esc>:w<CR>
+
+nnoremap Y y$
+
+" Go to file under cursor and create it if not existing
+" nnoremap gf :e <cfile><CR>
 
 " ctrl+/ toggle comment
 map <C-_> <Leader>c<space>
@@ -139,6 +218,81 @@ vnoremap <M-k> :m '<-2<CR>gv=gv
 " Navigate buffers with ctrl+[np]
 nnoremap <silent> <C-N> :bnext<CR>
 nnoremap <silent> <C-P> :bprevious<CR>
+
+" Quickfix list mappings
+nnoremap <C-J> :cn<CR>
+nnoremap <C-K> :cp<CR>
+
+" make mappings
+nnoremap <Leader>ma :Make<CR>
+nnoremap <Leader>mr :Make run<CR>
+nnoremap <Leader>mt :Make test<CR>
+
+" fugitive mappings
+nnoremap <Leader>gg :Git<CR>
+nnoremap <Leader>gb :Git blame<CR>
+nnoremap <Leader>gd :Gvdiffsplit<CR>
+nnoremap <Leader>ga :Git add %<CR>
+nnoremap <Leader>gc :Git commit<CR>
+
+" File mappings
+nnoremap <Leader>fR :Rename<space>
+nnoremap <Leader>fm :Chmod<space>
+nnoremap <Leader>fa :A<CR>
+nnoremap <Leader>ff :RipGrep<CR>
+nnoremap <Leader>fr :History<CR>
+
+" Buffer mappings
+nnoremap <Leader>bo :%bd <bar> e#<CR>
+
+" nnoremap <Leader>s :exec "vimgrep /" . expand("<cword>") . "/g src/**/*.c"<CR>:copen<CR>
+
+" Code navigation shortcuts
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+" rust-analyzer does not yet support go to declaration
+" nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+
+" Trigger code action
+nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
+
+" Goto previous/next diagnostic warning/error
+nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Anyjump mappings
+" Normal mode: Jump to definition under cursor
+nnoremap <leader>j :AnyJump<CR>
+" Visual mode: jump to selected text in visual mode
+xnoremap <leader>j :AnyJumpVisual<CR>
+" Normal mode: open previous opened file (after jump)
+nnoremap <leader>ab :AnyJumpBack<CR>
+" Normal mode: open last closed search window again
+nnoremap <leader>al :AnyJumpLastResults<CR>
+
+" Snippets mappings
+" Expand or jump
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+" Jump forward or backward
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+
+" Fix key binding conflict between vim-vinegar and vimwiki
+nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
 
 """""""""""""""""""""""
 " Plugins configuration
@@ -160,3 +314,105 @@ let g:NERDDefaultAlgin = 'left'
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 
+let g:rust_use_custom_ctags_defs = 1
+let g:rustfmt_autosave = 1
+
+let g:any_jump_search_prefered_engine = 'rg'
+
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown',
+                        \ 'ext': '.md' }]
+let g:vimwiki_global_ext = 0
+
+let g:fzf_preview_window = []
+let g:fzf_layout = { 'down': '30%' }
+
+command! -bang -nargs=* RipGrep
+            \ call fzf#run(fzf#wrap({ 'source': 'rg --files --hidden' }))
+
+" Setup gutentags to use rusty-tags
+" if !exists("g:gutentags_project_info")
+  " let g:gutentags_project_info = []
+" endif
+" call add(g:gutentags_project_info, {'type': 'rust', 'file': 'Cargo.toml'})
+" let g:gutentags_ctags_executable_rust = $HOME . '/.config/nvim/rust-ctags.sh'
+" autocmd BufRead *.rs :exec 'setlocal tags=./tags;/,' . system("rustc --print sysroot | tr -d '\n'") . '/lib/rustlib/src/rust/library/tags.temp'
+
+" https://sharksforarms.dev/posts/neovim-rust/
+" Configure LSP
+" https://github.com/neovim/nvim-lspconfig#rust_analyzer
+lua <<EOF
+
+-- nvim_lsp object
+local nvim_lsp = require'lspconfig'
+
+local opts = {
+    tools = {
+        autoSetHints = true,
+        hover_with_actions = true,
+        runnables = {
+            use_telescope = true
+        },
+        inlay_hints = {
+            show_parameter_hints = false,
+            parameter_hints_prefix = "",
+            other_hints_prefix = "",
+        },
+    },
+
+    -- all the opts to send to nvim-lspconfig
+    -- these override the defaults set by rust-tools.nvim
+    -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
+    server = {
+        -- on_attach is a callback called when the language server attachs to the buffer
+        -- on_attach = on_attach,
+        settings = {
+            -- to enable rust-analyzer settings visit:
+            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+            ["rust-analyzer"] = {
+                -- enable clippy on save
+                checkOnSave = {
+                    command = "clippy"
+                },
+            }
+        }
+    },
+}
+
+require('rust-tools').setup(opts)
+
+require'lspconfig'.clangd.setup{}
+EOF
+
+" Setup Completion
+" See https://github.com/hrsh7th/nvim-cmp#basic-configuration
+lua <<EOF
+local cmp = require'cmp'
+
+cmp.setup({
+  snippet = {
+    expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  mapping = {
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    })
+  },
+
+  -- Installed sources
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' },
+    { name = 'path' },
+    { name = 'buffer' },
+  },
+})
+EOF
