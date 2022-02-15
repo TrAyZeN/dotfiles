@@ -95,7 +95,7 @@ mkcdtemp() {
 }
 
 # Extract archive of various types
-ex () {
+ex() {
      if [ -f $1 ] ; then
          case $1 in
              *.tar.bz2)   tar xjf $1     ;;
@@ -108,13 +108,38 @@ ex () {
              *.tgz)       tar xzf $1     ;;
              *.zip)       unzip $1       ;;
              *.Z)         uncompress $1  ;;
-             *.7z)        7z x $1    ;;
+             *.7z)        7z x $1        ;;
              *)           echo "'$1' cannot be extracted via extract()" ;;
          esac
      else
          echo "'$1' is not a valid file"
      fi
 }
+
+# Move latest downloaded file into temp dir
+dlexp() {
+    local download_dir=~/Downloads
+    # TODO: Check if dir exists
+
+    local latest=""
+
+    # Find latest file in download dir
+    for file in "$download_dir"/*; do
+        if [ -z "$latest" ] || [ "$file" -nt "$latest" ]; then
+            latest="$file"
+        fi
+    done
+
+    local tmp_dir="$(mktemp -d)"
+    mv "$latest" "$tmp_dir"
+
+    cd "$tmp_dir"
+
+    # If it is an archive extract it
+    ex "$(basename $latest)" > /dev/null
+}
+
+bindkey -s '^j' 'fg^M'
 
 # Load aliases
 [ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
