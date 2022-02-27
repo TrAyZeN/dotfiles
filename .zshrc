@@ -180,6 +180,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 source "$PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
 source "$PLUGIN_DIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+source "$PLUGIN_DIR/zsh-bd/bd.plugin.zsh"
 
 compinit
 
