@@ -116,20 +116,25 @@ ex() {
      fi
 }
 
-# Move latest downloaded file into temp dir
-dlexp() {
-    local download_dir=~/Downloads
-    # TODO: Check if dir exists
-
+# Return latest file in the given dir
+get_latest() {
     local latest=""
 
-    # Find latest file in download dir
-    for file in "$download_dir"/*; do
+    for file in "$1"/*; do
         if [ -z "$latest" ] || [ "$file" -nt "$latest" ]; then
             latest="$file"
         fi
     done
 
+    echo "$latest"
+}
+
+# Move latest downloaded file into temp dir
+dlexp() {
+    local download_dir=~/Downloads
+    # TODO: Check if dir exists
+
+    local latest="$(get_latest "$download_dir")"
     local tmp_dir="$(mktemp -d)"
     mv "$latest" "$tmp_dir"
 
@@ -137,6 +142,12 @@ dlexp() {
 
     # If it is an archive extract it
     ex "$(basename $latest)" > /dev/null
+}
+
+# Move latest dowloaded file in the given dir
+mvl() {
+    local download_dir=~/Downloads
+    mv "$(get_latest "$download_dir")" "$1"
 }
 
 bindkey -s '^j' 'fg^M'
