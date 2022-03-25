@@ -1,7 +1,7 @@
 call plug#begin()
 
 " Movement speed
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-vinegar'
 
 " Surround things
@@ -32,7 +32,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-eunuch'
 
 " Show registers content
-Plug 'junegunn/vim-peekaboo'
+" Plug 'junegunn/vim-peekaboo'
 
 " Fasto file fuzzy finding
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -72,6 +72,8 @@ Plug 'hrsh7th/vim-vsnip'
 
 " Tools for better development in rust
 Plug 'simrat39/rust-tools.nvim'
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 call plug#end()
 
@@ -171,7 +173,7 @@ function FormatBuffer()
   endif
 endfunction
 
-autocmd BufWritePre *.h,*.hpp,*.c,*.cc,*.cpp,*.vert,*.frag :call FormatBuffer()
+autocmd BufWritePre *.h,*.hh,*.hpp,*.hxx,*.c,*.cc,*.cpp,*.vert,*.frag :call FormatBuffer()
 
 let $MANSECT="2:3:1:8:5:4:9:6:7"
 
@@ -327,15 +329,9 @@ let g:fzf_preview_window = []
 let g:fzf_layout = { 'down': '30%' }
 
 command! -bang -nargs=* RipGrep
-            \ call fzf#run(fzf#wrap({ 'source': 'rg --files --hidden' }))
+            \ call fzf#run(fzf#wrap({ 'source': 'rg --files --hidden --glob=!.git/' }))
 
-" Setup gutentags to use rusty-tags
-" if !exists("g:gutentags_project_info")
-  " let g:gutentags_project_info = []
-" endif
-" call add(g:gutentags_project_info, {'type': 'rust', 'file': 'Cargo.toml'})
-" let g:gutentags_ctags_executable_rust = $HOME . '/.config/nvim/rust-ctags.sh'
-" autocmd BufRead *.rs :exec 'setlocal tags=./tags;/,' . system("rustc --print sysroot | tr -d '\n'") . '/lib/rustlib/src/rust/library/tags.temp'
+command -nargs=0 Todo :vimgrep /TODO/gj src/**/*.[ch] | copen
 
 " https://sharksforarms.dev/posts/neovim-rust/
 " Configure LSP
@@ -380,7 +376,9 @@ local opts = {
 
 require('rust-tools').setup(opts)
 
-require'lspconfig'.clangd.setup{}
+require'lspconfig'.clangd.setup {
+    filetypes = { "c", "h", "cpp", "hpp", "cc", "hh", "hxx" }
+}
 EOF
 
 " Setup Completion
@@ -401,7 +399,7 @@ cmp.setup({
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm({
+    ['<Tab>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     })
@@ -415,4 +413,35 @@ cmp.setup({
     { name = 'buffer' },
   },
 })
+EOF
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  -- One of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = "maintained",
+
+  -- Install languages synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- List of parsers to ignore installing
+  ignore_install = { "" },
+
+  highlight = {
+    -- `false` will disable the whole extension
+    enable = true,
+
+    -- list of language that will be disabled
+    disable = { "" },
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+  ident = {
+    enable = true,
+    disable = { "" },
+  },
+}
 EOF
