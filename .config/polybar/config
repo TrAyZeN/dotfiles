@@ -115,8 +115,8 @@ module-margin = 2
 ; See the Fonts wiki page for more details
 ; Using nerdfonts icons
 ; To pick them: https://www.nerdfonts.com/cheat-sheet
-font-0 = "Noto Sans:size=11:style=Regular:antialias=true;0"
-font-1 = "mononoki Nerd Font mono:pixelsize=16:style=Regular;1"
+font-0 = "Noto Sans:size=11:style=Regular:antialias=true;1"
+font-1 = "mononoki Nerd Font mono:size=13:style=Regular;2"
 ; font-1 = "Material Icons:size=10:style=Regular;1"
 
 ; Modules are added to one of the available blocks
@@ -251,11 +251,11 @@ type = internal/i3
 ; Sort the workspaces by index instead of the default
 ; sorting that groups the workspaces by output
 ; Default: false
-index-sort = true
+index-sort = falsk
 
 ; Create click handler used to focus workspace
 ; Default: true
-enable-click = false
+enable-click = true
 
 ; Create scroll handlers used to cycle workspaces
 ; Default: true
@@ -265,18 +265,37 @@ enable-scroll = false
 ; Default: true
 wrapping-scroll = false
 
+ws-icon-0 = 1;I
+ws-icon-1 = 2;II
+ws-icon-2 = 3;III
+ws-icon-3 = 4;IV
+ws-icon-4 = 5;V
+ws-icon-5 = 6;VI
+ws-icon-6 = 7;VII
+ws-icon-7 = 8;VIII
+ws-icon-8 = 9;IX
+ws-icon-9 = 10;X
+ws-icon-default = *
+
 format = <label-state>
 
 ; focused = Active workspace on focused monitor
-label-focused = 
+label-focused = %icon%
 label-focused-padding = 1
+label-focused-foreground = #ffffff
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = 
+label-unfocused = %icon%
 label-unfocused-padding = 1
+label-unfocused-foreground = #aaaaaa
 
-label-urgent = 
+label-visible = %icon%
+label-visible-padding = 1
+
+label-urgent = %icon%
 label-urgent-padding = 1
+label-urgent-foreground = #ff0000
+
 
 [module/memory]
 type = internal/memory
