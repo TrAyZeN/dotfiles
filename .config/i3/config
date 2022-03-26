@@ -168,7 +168,7 @@ bindsym $mod+Shift+s exec flameshot gui
 title_align center
 
 # class                 border  backgr. text    indicator child_border 285577
-client.focused          #000000 #000000 #ffffff #2e9ef4   #ff0000
+client.focused          #000000 #000000 #ffffff #2e9ef4   #f00000
 client.focused_inactive #223333 #223333 #aaaaaa #2e9ef4   #000000
 client.unfocused        #223333 #223333 #aaaaaa #2e9ef4   #000000
 
