@@ -48,18 +48,6 @@ bindsym $mod+BackSpace kill
 
 bindsym $mod+Ctrl+l exec i3lock
 
-# start dmenu (a program launcher)
-#bindsym $mod+d exec dmenu_run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-bindsym $mod+d exec --no-startup-id "rofi -modi 'run,ssh' -show run"
-# bindsym $mod+d exec /home/trayzen/.config/rofi/launchers/text/launcher.sh
-
-bindsym $mod+shift+d exec rofimoji
-
-bindsym $mod+b exec /home/trayzen/.config/scripts/rofi-book.sh
-
 # change focus with vim keys
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -95,6 +83,10 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+# TODO: Find a better mapping
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -107,6 +99,10 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+
+# When switching to the current workspace it will switch back to the previous
+# one
+workspace_auto_back_and_forth yes
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -158,12 +154,7 @@ mode "volume" {
     bindsym $mod+Shift+v mode "default"
 }
 
-bindsym $mod+Shift+v mode "volume"
-
-# Screenshot
-bindsym Print exec flameshot gui
-bindsym Ctrl+Print exec flameshot gui
-bindsym $mod+Shift+s exec flameshot gui
+# bindsym $mod+Shift+v mode "volume"
 
 title_align center
 
@@ -171,7 +162,6 @@ title_align center
 client.focused          #000000 #000000 #ffffff #2e9ef4   #f00000
 client.focused_inactive #223333 #223333 #aaaaaa #2e9ef4   #000000
 client.unfocused        #223333 #223333 #aaaaaa #2e9ef4   #000000
-
 # for testing purpose
 #client.focused          #ff0000 #00ff00 #0000ff #ff00ff #00ffff
 #client.unfocused        #ff0000 #00ff00 #0000ff #ff00ff #00ffff
@@ -181,17 +171,33 @@ client.unfocused        #223333 #223333 #aaaaaa #2e9ef4   #000000
 #
 # gaps inner 8
 # gaps outer 4
+
 # for_window [class=".*"] border pixel 0
 for_window [class=".*"] border pixel 2
 
+for_window [title="^scratchpad_music$"] move window to scratchpad, scratchpad show, resize set 890 460, move position 990 110, sticky enable
+
 #
-# Shortcuts
+# Application shortcuts
 #
 # bindsym $mod+c exec code
 # bindsym $mod+x exec google-chrome-stable
 
+# menu
+bindsym $mod+d exec --no-startup-id "rofi -modi 'run,ssh' -show run"
+# bindsym $mod+d exec /home/trayzen/.config/rofi/launchers/text/launcher.sh
+bindsym $mod+Shift+d exec rofimoji
+bindsym $mod+b exec /home/trayzen/.config/scripts/rofi-book.sh
+
+# Screenshot
+bindsym Print exec flameshot gui
+bindsym Ctrl+Print exec flameshot gui
+bindsym $mod+Shift+s exec flameshot gui
+
+bindsym $mod+m exec i3-msg '[title="^scratchpad_music$"] scratchpad show' || alacritty -t 'scratchpad_music' -e 'ncmpcpp'
+
 #
-# Assign workspaces
+# Assign workspaces to applications
 #
 assign [class="Thunderbird"] $ws2
 assign [class="discord"] $ws3
