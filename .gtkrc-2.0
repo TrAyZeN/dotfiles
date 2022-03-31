@@ -2,8 +2,8 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/trayzen/.gtkrc-2.0.mine"
-gtk-theme-name="Prof-Gnome-Dark-3.6"
-gtk-icon-theme-name="Luna"
+gtk-theme-name="Qogir-dark"
+gtk-icon-theme-name="WhiteSur-red-dark"
 gtk-font-name="Cantarell 13"
 gtk-cursor-theme-name="Vimix-cursors"
 gtk-cursor-theme-size=0
