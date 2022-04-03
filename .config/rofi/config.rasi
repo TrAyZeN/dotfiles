@@ -1,3 +1,16 @@
+@import "keys.rasi"
+
 configuration {
-	theme: "trayzen";
+  timeout {
+      action: "kb-cancel";
+      delay:  0;
+  }
+
+  filebrowser {
+      directories-first: true;
+      sorting-method:    "name";
+  }
 }
+
+// @theme "trayzen"
+@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"
