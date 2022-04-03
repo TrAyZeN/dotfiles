@@ -17,6 +17,7 @@ dot_files=(
 .config/polybar/config
 .config/polybar/launch.sh
 .config/rofi/config.rasi
+.config/rofi/keys.rasi
 .config/rofi/trayzen.rasi
 .config/rofi/scripts/book.sh
 .config/scripts/startup.sh
