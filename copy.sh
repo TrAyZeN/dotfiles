@@ -31,6 +31,7 @@ dot_files=(
 .config/openbox/menu.xml
 .config/openbox/rc.xml
 .config/feh/buttons
+.config/mpd/mpd.conf
 .config/ncmpcpp/config
 .config/ncmpcpp/bindings
 )
