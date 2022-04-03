@@ -1,6 +1,5 @@
 #!/bin/sh
 
-PDF_READER="google-chrome-stable"
 BOOK_DIR="$HOME/books"
 
 if [ -z "${ROFI_OUTSIDE}" ]
@@ -21,6 +20,6 @@ if [ -d "${CURR_PWD}" ]; then
         echo -en "$file\x00info\x1f${NEXT_PWD}\n"
     done
 else
-    "${PDF_READER}" "${CURR_PWD}" >/dev/null 2>&1
+    xdg-open "${CURR_PWD}" >/dev/null 2>&1
     exit 0
 fi
