@@ -1,5 +1,5 @@
 [Default Applications]
-application/pdf=opera.desktop;
+application/pdf=google-chrome.desktop;
 text/html=opera.desktop;
 text/x-markdown=typora.desktop;
 inode/directory=thunar.desktop;
@@ -76,3 +76,5 @@ x-scheme-handler/nntp=userapp-Thunderbird-B4VD50.desktop;userapp-Thunderbird-XS6
 x-scheme-handler/feed=userapp-Thunderbird-GRQJ50.desktop;userapp-Thunderbird-7VP680.desktop;
 application/rss+xml=userapp-Thunderbird-GRQJ50.desktop;userapp-Thunderbird-7VP680.desktop;
 application/x-extension-rss=userapp-Thunderbird-GRQJ50.desktop;userapp-Thunderbird-7VP680.desktop;
+image/png=google-chrome.desktop;
+image/jpeg=feh.desktop;
