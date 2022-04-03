@@ -30,10 +30,10 @@ dot_files=(
 .config/openbox/environment
 .config/openbox/menu.xml
 .config/openbox/rc.xml
+.config/feh/buttons
 )
 
 for df in ${dot_files[@]}; do
     mkdir -p "$(dirname ${df})"
     cp ~/${df} ./${df} 2> /dev/null
 done
-
