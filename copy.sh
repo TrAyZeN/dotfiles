@@ -31,6 +31,8 @@ dot_files=(
 .config/openbox/menu.xml
 .config/openbox/rc.xml
 .config/feh/buttons
+.config/ncmpcpp/config
+.config/ncmpcpp/bindings
 )
 
 for df in ${dot_files[@]}; do
