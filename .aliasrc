@@ -11,7 +11,10 @@ alias \
     vi="nvim" \
     py="python3" \
     clif="~/rustc_codegen_cranelift/build/cargo.sh" \
-    "cd.."="cd .."
+    "cd.."="cd .." \
+    g="git" \
+    open="xdg-open" \
+    cp="cp -a"
 
 # Mistypes
 alias \
