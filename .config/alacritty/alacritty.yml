@@ -15,9 +15,11 @@ scrolling:
 font:
   size: 8.0
   normal:
-    family: mononoki Nerd Font
-    # family: Iosevka Nerd Font
+    # family: mononoki Nerd Font
+    family: Iosevka Nerd Font
+    # style: Oblique
     # style: Medium
+    style: Extra-Bold
 
 colors:
   primary:
