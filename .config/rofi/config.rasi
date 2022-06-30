@@ -1,6 +1,8 @@
 @import "keys.rasi"
 
 configuration {
+  sidebar-mode: true;
+
   timeout {
       action: "kb-cancel";
       delay:  0;
