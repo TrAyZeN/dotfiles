@@ -20,6 +20,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 " git gud
 Plug 'tpope/vim-fugitive'
+Plug 'rbong/vim-flog', { 'branch': 'master' }
 
 " Clock is ticking
 Plug 'wakatime/vim-wakatime'
@@ -32,7 +33,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-eunuch'
 
 " Show registers content
-" Plug 'junegunn/vim-peekaboo'
+Plug 'junegunn/vim-peekaboo'
 
 " Fasto file fuzzy finding
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -44,7 +45,7 @@ Plug 'junegunn/fzf.vim'
 " Plug 'SirVer/ultisnips'
 
 " More text objects
-Plug 'wellle/targets.vim'
+" Plug 'wellle/targets.vim'
 
 " Languages
 Plug 'cespare/vim-toml'
@@ -74,6 +75,7 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'simrat39/rust-tools.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 call plug#end()
 
@@ -98,6 +100,8 @@ autocmd Filetype json,md,toml,yaml,html setlocal ts=2 sw=2
 set textwidth=80
 set colorcolumn=80
 highlight ColorColumn ctermbg=DarkGray guibg=green
+
+autocmd FileType javascript setlocal textwidth=100 colorcolumn=100
 
 " Indications
 set number
@@ -175,6 +179,12 @@ endfunction
 
 autocmd BufWritePre *.h,*.hh,*.hpp,*.hxx,*.c,*.cc,*.cpp,*.vert,*.frag :call FormatBuffer()
 
+" augroup AutoSaveFolds
+  " autocmd!
+  " autocmd BufWinLeave * mkview
+  " autocmd BufWinEnter * silent! loadview
+" augroup END
+
 let $MANSECT="2:3:1:8:5:4:9:6:7"
 
 " Use shift+k to open man page under the cursor
@@ -236,6 +246,7 @@ nnoremap <Leader>gb :Git blame<CR>
 nnoremap <Leader>gd :Gvdiffsplit<CR>
 nnoremap <Leader>ga :Git add %<CR>
 nnoremap <Leader>gc :Git commit<CR>
+nnoremap <Leader>gl :Flog<CR>
 
 " File mappings
 nnoremap <Leader>fR :Rename<space>
@@ -261,6 +272,7 @@ nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 " rust-analyzer does not yet support go to declaration
 " nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gn    <cmd>lua vim.lsp.buf.declaration()<CR>
 
 " Trigger code action
 nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
@@ -295,6 +307,12 @@ smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-T
 
 " Fix key binding conflict between vim-vinegar and vimwiki
 nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
+
+" Terminal mappings
+nnoremap <leader>tt :terminal<CR>i
+nnoremap <leader>ts :rightbelow new<CR>:terminal<CR>i
+tnoremap <Esc> <C-\><C-n>
+tnoremap <C-v><Esc> <Esc>
 
 """""""""""""""""""""""
 " Plugins configuration
@@ -374,11 +392,14 @@ local opts = {
     },
 }
 
-require('rust-tools').setup(opts)
-
 require'lspconfig'.clangd.setup {
     filetypes = { "c", "h", "cpp", "hpp", "cc", "hh", "hxx" }
 }
+
+require'lspconfig'.pyright.setup {
+}
+
+require('rust-tools').setup(opts)
 EOF
 
 " Setup Completion
@@ -418,7 +439,7 @@ EOF
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-  ensure_installed = "maintained",
+  ensure_installed = "all",
 
   -- Install languages synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -442,6 +463,27 @@ require'nvim-treesitter.configs'.setup {
   ident = {
     enable = true,
     disable = { "" },
+  },
+}
+EOF
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  textobjects = {
+    select = {
+      enable = true,
+
+      -- Automatically jump forward to textobj, similar to targets.vim
+      lookahead = true,
+
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+      },
+    },
   },
 }
 EOF
