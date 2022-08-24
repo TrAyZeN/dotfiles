@@ -14,8 +14,10 @@ configuration {
     kb-remove-to-eol: ""; // Default bind is Control+k
     kb-remove-to-sol: ""; // Default bind is Control+u
     kb-accept-entry: "Control+m,Return,KP_Enter";
-    kb-row-up: "Up,Control+p,ISO_Left_Tab,Control+k";
+    kb-row-up: "Up,Control+p,Control+k";
     kb-row-down: "Down,Control+n,Control+j";
+    kb-element-next: "Tab";
+    kb-element-prev: "ISO_Left_Tab";
     kb-page-prev: "Page_Up,Control+u";
     kb-page-next: "Page_Down,Control+d";
     kb-row-first: "Home,KP_Home,Control+g";
