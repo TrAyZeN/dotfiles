@@ -30,15 +30,11 @@ function set_prompt() {
     # Only working with 256 colors
     #PROMPT="%F{45}%n%f:%F{184}%d%f %F{208}${STATUS}%f%(?.%F{46}~>%f.%F{197}~>%f) "
 
-    SPLIT_PWD=($(echo $PWD | tr "/" "\n"))
-    SHORT_PWD="/"
-    for part in "${SPLIT_PWD[@]:0:${#SPLIT_PWD[@]}-1}"; do
-        SHORT_PWD+="${part:0:1}/"
-    done
-    SHORT_PWD+=${SPLIT_PWD[-1]}
+    SHORT_PWD=$(echo "$PWD" | sed -E 's/([^/])[^/]*\//\1\//g')
 
     # Shorten prompt
-    PROMPT="%F{184}${SHORT_PWD}%f %F{208}${STATUS}%f%(?.%F{46}~>%f.%F{197}~>%f) "
+    #PROMPT="%F{184}${SHORT_PWD}%f %F{208}${STATUS}%f%(?.%F{46}~>%f.%F{197}~>%f) "
+    PROMPT="%F{184}${SHORT_PWD}%f %F{208}${STATUS}%f%(?.%F{46}ᛋ%f.%F{197}ᛋ%f) "
     RPROMPT=""
 
     setopt no_prompt_{bang,subst} prompt_percent  # enable/disable correct prompt expansions
@@ -150,6 +146,12 @@ mvl() {
     mv "$(get_latest "$download_dir")" "$1"
 }
 
+# Append given path to the PATH
+path_append() {
+    export OLDPATH=$PATH
+    export PATH=$PATH:$1
+}
+
 bindkey -s '^j' 'fg^M'
 
 # Load aliases
@@ -189,3 +191,5 @@ export PATH
 
 export PGDATA="$HOME/postgres_data"
 export PGHOST="/tmp"
+
+# eval "$(direnv hook zsh)"
