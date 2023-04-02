@@ -2,6 +2,7 @@
 
 configuration {
   sidebar-mode: true;
+  // sort: true;
 
   timeout {
       action: "kb-cancel";
