@@ -46,7 +46,7 @@ bindsym $mod+Return exec alacritty
 # kill focused window
 bindsym $mod+BackSpace kill
 
-bindsym $mod+Ctrl+l exec i3lock
+bindsym $mod+Ctrl+l exec i3lock -c 000000
 
 # change focus with vim keys
 bindsym $mod+h focus left
@@ -102,7 +102,7 @@ set $ws10 "10"
 
 # When switching to the current workspace it will switch back to the previous
 # one
-workspace_auto_back_and_forth yes
+# workspace_auto_back_and_forth yes
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -208,4 +208,4 @@ assign [class="discord"] $ws3
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 # exec_always --no-startup-id picom --experimental-backend
 exec_always --no-startup-id redshift
-exec_always --no-startup-id feh --bg-fill --no-fehbg ~/images/wallpaper.png
+exec_always --no-startup-id feh --bg-fill --no-fehbg ~/images/wallpaper.jpg
