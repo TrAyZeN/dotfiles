@@ -13,6 +13,9 @@ dot_files=(
 .config/i3/config
 .config/nvim/init.vim
 .config/nvim/coc-settings.json
+.config/nvim/lua/user/keymap.lua
+.config/nvim/lua/user/plugins.lua
+.config/nvim/lua/user/settings.lua
 .config/neofetch/config.conf
 .config/picom/picom.conf
 .config/polybar/config
