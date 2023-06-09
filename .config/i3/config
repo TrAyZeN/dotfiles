@@ -32,10 +32,14 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5 && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5 && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pamixer -t && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5 \
+    && /home/trayzen/.config/scripts/notify_volume.sh && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5 \
+    && /home/trayzen/.config/scripts/notify_volume.sh && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pamixer -t \
+    && /home/trayzen/.config/scripts/notify_volume.sh && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle \
+    && /home/trayzen/.config/scripts/notify_volume.sh && $refresh_i3status
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -205,7 +209,7 @@ assign [class="discord"] $ws3
 #
 # Startup
 #
-exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id /home/trayzen/.config/polybar/launch.sh
 # exec_always --no-startup-id picom --experimental-backend
 exec_always --no-startup-id redshift
 exec_always --no-startup-id feh --bg-fill --no-fehbg ~/images/wallpaper.jpg
