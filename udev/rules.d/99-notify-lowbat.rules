@@ -1,0 +1,1 @@
+SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", ATTR{capacity}=="15", RUN+="/etc/udev/notify-lowbat.sh"

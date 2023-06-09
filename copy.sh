@@ -44,3 +44,6 @@ for df in ${dot_files[@]}; do
     mkdir -p "$(dirname ${df})"
     cp ~/${df} ./${df} 2> /dev/null
 done
+
+cp /etc/udev/notify-lowbat.sh ./udev/notify-lowbat.sh
+cp /etc/udev/rules.d/99-notify-lowbat.rules ./udev/rules.d/99-notify-lowbat.rules
