@@ -9,7 +9,7 @@ vim.call('plug#begin')
 
 -- Movement speed
 -- Plug 'ludovicchabant/vim-gutentags'
-Plug 'tpope/vim-vinegar'
+Plug 'justinmk/vim-dirvish'
 
 -- Surround things
 Plug 'tpope/vim-surround'
@@ -114,6 +114,8 @@ vim.g.any_jump_search_prefered_engine = 'rg'
 
 vim.g.vimwiki_list = {{ path = '~/vimwiki/', syntax = 'markdown', ext = '.md' }}
 vim.g.vimwiki_global_ext = 0
+
+vim.g.dirvish_mode = ':sort ,^.*[\\/],'
 
 -- vim.cmd [[
     -- function! s:build_quickfix_list(lines)
@@ -284,4 +286,9 @@ require'nvim-treesitter.configs'.setup {
       },
     },
   },
+}
+
+vim.o.timeout = true
+vim.o.timeoutlen = 500
+require'which-key'.setup {
 }
