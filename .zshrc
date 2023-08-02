@@ -82,12 +82,17 @@ fg() {
 
 # mkdir and then cd
 mkcd() {
-    mkdir -p $1 && cd $1
+    if [ "$#" -lt 1 ]; then
+        echo "mkcd: missing directory path" 1>&2
+        false
+    else
+        mkdir -p -- "$1" && cd -- "$1"
+    fi
 }
 
 # mktemp and then cd
 mkcdtemp() {
-    cd $(mktemp -d)
+    cd -- "$(mktemp -d)"
 }
 
 # Extract archive of various types
@@ -108,7 +113,8 @@ ex() {
              *)           echo "'$1' cannot be extracted via extract()" ;;
          esac
      else
-         echo "'$1' is not a valid file"
+         echo "'$1' is not a valid file" 1>&2
+         false
      fi
 }
 
