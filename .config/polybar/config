@@ -125,7 +125,7 @@ font-1 = "mononoki Nerd Font mono:size=13:style=Regular;2"
 ;   modules-right = ipc clock
 modules-left = powermenu i3
 modules-center =
-modules-right = volume wireless-network wired-network battery date
+modules-right = volume backlight wireless-network wired-network battery date
 
 ; The separator will be inserted between the output of each module
 ; This has the same properties as a label
@@ -319,6 +319,19 @@ ramp-volume-3 = 奔
 ramp-volume-4 = 墳
 ramp-volume-5 = 墳
 ramp-volume-6 = 墳
+
+[module/backlight]
+type = internal/backlight
+
+card = intel_backlight
+
+; use-actual-brightness = true
+
+format = <ramp> <label>
+
+label = %percentage%%
+
+ramp-0 = ☀️
 
 [module/wired-network]
 type = internal/network

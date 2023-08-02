@@ -48,3 +48,6 @@ done
 
 cp /etc/udev/notify-lowbat.sh ./udev/notify-lowbat.sh
 cp /etc/udev/rules.d/99-notify-lowbat.rules ./udev/rules.d/99-notify-lowbat.rules
+
+cp /etc/smartd.conf ./smartd/smartd.conf
+cp /usr/share/smartmontools/smartd_warning.d/smartdnotify ./smartd/smartdnotify
