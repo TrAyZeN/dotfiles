@@ -12,9 +12,7 @@ function root_notify_send() {
     # Detect the id of the user
     local uid=$(id -u $user)
 
-    echo "$display $user $uid"
-
     sudo -u $user DISPLAY=$display DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$uid/bus /usr/bin/notify-send "$@"
 }
 
-root_notify_send -u critical 'Low battery' '15% battery remaining'
+root_notify_send -h string:x-dunst-stack-tag:low_battery -u critical 'Low battery' '15% battery remaining'
