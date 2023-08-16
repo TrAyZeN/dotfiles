@@ -18,7 +18,7 @@ dot_files=(
 .config/nvim/lua/user/settings.lua
 .config/neofetch/config.conf
 .config/picom/picom.conf
-.config/polybar/config
+.config/polybar/config.ini
 .config/polybar/launch.sh
 .config/rofi/config.rasi
 .config/rofi/keys.rasi
