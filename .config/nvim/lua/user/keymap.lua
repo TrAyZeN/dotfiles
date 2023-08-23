@@ -69,9 +69,10 @@ vim.keymap.set('n', '<Leader>fd', ':Mkdir<space>', { noremap = true })
 vim.keymap.set('n', '<Leader>fa', ':A<CR>', { noremap = true })
 vim.keymap.set('n', '<Leader>ff', ':RipGrep<CR>', { noremap = true })
 vim.keymap.set('n', '<Leader>fh', ':History<CR>', { noremap = true })
+vim.keymap.set('n', '<Leader>ft', ':Rg ', { noremap = true })
 
 -- Buffer mappings
-vim.keymap.set('n', '<Leader>bo', ':%bd <bar> e#<CR>', { noremap = true })
+vim.keymap.set('n', '<Leader>bo', ':if bufnr(\'%\') > 1 | 1,-1bd | endif | if bufnr(\'%\') < bufnr(\'$\') | +1,$bd | endif | redraw! <CR>', { noremap = true, desc = "Delete all other buffers (keep only the current one)" })
 
 -- " nnoremap <Leader>s :exec "vimgrep /" . expand("<cword>") . "/g src/**/*.c"<CR>:copen<CR>
 
