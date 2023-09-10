@@ -7,7 +7,7 @@ alias \
 
 alias \
     mkdir="mkdir -p" \
-    ls="exa --git --header" \
+    ls="eza --git --header" \
     vi="nvim" \
     py="python3" \
     clif="~/rustc_codegen_cranelift/build/cargo.sh" \
