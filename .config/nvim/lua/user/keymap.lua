@@ -29,24 +29,30 @@ vim.cmd [[
 ]]
 -- vim.keymap.set('', '<C-_>', '<Leader>c<space>')
 
+-- Keep cursor centered
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
+
 -- Bash like keys for the command line
-vim.keymap.set('c', '<C-A>', '<Home>', { noremap = true })
-vim.keymap.set('c', '<C-E>', '<End>', { noremap = true })
-vim.keymap.set('c', '<C-K>', '<C-U>', { noremap = true })
-vim.keymap.set('c', '<C-P>', '<Up>', { noremap = true })
-vim.keymap.set('c', '<C-N>', '<Down>', { noremap = true })
+vim.keymap.set('c', '<C-a>', '<Home>', { noremap = true })
+vim.keymap.set('c', '<C-e>', '<End>', { noremap = true })
+vim.keymap.set('c', '<C-k>', '<C-u>', { noremap = true })
+vim.keymap.set('c', '<C-p>', '<Up>', { noremap = true })
+vim.keymap.set('c', '<C-n>', '<Down>', { noremap = true })
 
 -- Move selected lines using alt+[jk]
 vim.keymap.set('v', '<M-j>', ':m \'>+1<CR>gv=gv', { noremap = true })
 vim.keymap.set('v', '<M-k>', ':m \'<-2<CR>gv=gv', { noremap = true })
 
 -- Navigate buffers with ctrl+[np]
-vim.keymap.set('n', '<C-N>', ':bnext<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-P>', ':bprevious<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-n>', ':bnext<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-p>', ':bprevious<CR>', { noremap = true, silent = true })
 
 -- Quickfix list mappings
-vim.keymap.set('n', '<C-J>', ':cn<CR>', { noremap = true })
-vim.keymap.set('n', '<C-K>', ':cp<CR>', { noremap = true })
+vim.keymap.set('n', '<C-j>', ':cn<CR>', { noremap = true })
+vim.keymap.set('n', '<C-k>', ':cp<CR>', { noremap = true })
 
 -- make mappings
 vim.keymap.set('n', '<Leader>ma', ':Make<CR>', { noremap = true })
@@ -63,7 +69,7 @@ vim.keymap.set('n', '<Leader>gc', ':Git commit<CR>', { noremap = true })
 vim.keymap.set('n', '<Leader>gl', ':Commits<CR>', { noremap = true })
 
 -- File mappings
-vim.keymap.set('n', '<Leader>fR', ':Rename<space>', { noremap = true })
+vim.keymap.set('n', '<Leader>fR', ':Rename<space>', { noremap = true, desc = "Rename file" })
 vim.keymap.set('n', '<Leader>fm', ':Chmod<space>', { noremap = true })
 vim.keymap.set('n', '<Leader>fd', ':Mkdir<space>', { noremap = true })
 vim.keymap.set('n', '<Leader>fa', ':A<CR>', { noremap = true })
@@ -73,14 +79,15 @@ vim.keymap.set('n', '<Leader>ft', ':Rg ', { noremap = true })
 
 -- Buffer mappings
 vim.keymap.set('n', '<Leader>bo', ':if bufnr(\'%\') > 1 | 1,-1bd | endif | if bufnr(\'%\') < bufnr(\'$\') | +1,$bd | endif | redraw! <CR>', { noremap = true, desc = "Delete all other buffers (keep only the current one)" })
+vim.keymap.set('n', '<Leader>bd', ':Bd<CR>', { noremap = false })
 
 -- " nnoremap <Leader>s :exec "vimgrep /" . expand("<cword>") . "/g src/**/*.c"<CR>:copen<CR>
 
 -- Code navigation shortcuts
-vim.keymap.set('n', '<c-]>', vim.lsp.buf.definition, { noremap = true, silent = true })
+vim.keymap.set('n', '<C-]>', vim.lsp.buf.definition, { noremap = true, silent = true })
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, { noremap = true, silent = true })
 vim.keymap.set('n', 'gD', vim.lsp.buf.implementation, { noremap = true, silent = true })
-vim.keymap.set('n', '<c-k>', vim.lsp.buf.signature_help, { noremap = true, silent = true })
+-- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { noremap = true, silent = true })
 vim.keymap.set('n', '1gD', vim.lsp.buf.type_definition, { noremap = true, silent = true })
 vim.keymap.set('n', 'gr', vim.lsp.buf.references, { noremap = true, silent = true })
 vim.keymap.set('n', 'g0', vim.lsp.buf.document_symbol, { noremap = true, silent = true })

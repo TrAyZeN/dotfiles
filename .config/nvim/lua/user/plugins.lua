@@ -85,6 +85,9 @@ Plug 'elixir-editors/vim-elixir'
 -- Tools for better development in rust
 Plug 'simrat39/rust-tools.nvim'
 
+-- Display keys
+Plug 'folke/which-key.nvim'
+
 vim.call('plug#end')
 
 --------------------------
@@ -283,6 +286,8 @@ require'nvim-treesitter.configs'.setup {
         ["if"] = "@function.inner",
         ["ac"] = "@class.outer",
         ["ic"] = "@class.inner",
+        ["ab"] = "@block.outer",
+        ["ib"] = "@block.inner",
       },
     },
   },
@@ -291,4 +296,16 @@ require'nvim-treesitter.configs'.setup {
 vim.o.timeout = true
 vim.o.timeoutlen = 500
 require'which-key'.setup {
+    triggers_nowait = {
+        -- marks
+        "`",
+        "'",
+        "g`",
+        "g'",
+        -- registers
+        '"',
+        "<c-r>",
+        -- spelling
+        "z=",
+    }
 }

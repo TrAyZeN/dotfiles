@@ -15,9 +15,14 @@ vim.opt.smarttab = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 
--- Doesn't seem to be working
+-- Doesn't seem to be working with globbing
 vim.api.nvim_create_autocmd('FileType', {
     pattern = {'*.json', '*.md', '*.toml', '*.yaml', '*.yml', '*.html'},
+    command = 'setlocal ts=2 sw=2'
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'tex',
     command = 'setlocal ts=2 sw=2'
 })
 
