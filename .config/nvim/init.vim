@@ -44,3 +44,6 @@ autocmd BufWritePre *.h,*.hh,*.hpp,*.hxx,*.c,*.cc,*.cpp,*.vert,*.frag :call Form
   " autocmd BufWinLeave * mkview
   " autocmd BufWinEnter * silent! loadview
 " augroup END
+
+set grepprg=rg\ --vimgrep
+set grepformat=%f:%l:%c:%m
