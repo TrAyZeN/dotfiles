@@ -5,6 +5,8 @@ SAVEHIST=10000
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
+export XDG_CONFIG_HOME="$HOME/.config"
+
 unsetopt beep
 
 # Word delimiters
