@@ -55,31 +55,31 @@ vim.keymap.set('n', '<C-j>', ':cn<CR>', { noremap = true })
 vim.keymap.set('n', '<C-k>', ':cp<CR>', { noremap = true })
 
 -- make mappings
-vim.keymap.set('n', '<Leader>ma', ':Make<CR>', { noremap = true })
-vim.keymap.set('n', '<Leader>mr', ':Make run<CR>', { noremap = true })
-vim.keymap.set('n', '<Leader>mt', ':Make test<CR>', { noremap = true })
+vim.keymap.set('n', '<Leader>ma', ':Make<CR>', { noremap = true, desc = "make" })
+vim.keymap.set('n', '<Leader>mr', ':Make run<CR>', { noremap = true, desc = "make run" })
+vim.keymap.set('n', '<Leader>mt', ':Make test<CR>', { noremap = true, desc = "make test" })
 
 -- fugitive mappings
 vim.keymap.set('n', '<Leader>gg', ':Git<CR>', { noremap = true })
-vim.keymap.set('n', '<Leader>gb', ':Git blame<CR>', { noremap = true })
-vim.keymap.set('n', '<Leader>gd', ':Gvdiffsplit<CR>', { noremap = true })
+vim.keymap.set('n', '<Leader>gb', ':Git blame<CR>', { noremap = true, desc = "git blame" })
+vim.keymap.set('n', '<Leader>gd', ':Gvdiffsplit<CR>', { noremap = true, desc = "git diff" })
 vim.keymap.set('n', '<Leader>ga', ':Git add %<CR>', { noremap = true })
 vim.keymap.set('n', '<Leader>gc', ':Git commit<CR>', { noremap = true })
 -- vim.keymap.set('n', '<Leader>gl', ':Flog<CR>', { noremap = true })
-vim.keymap.set('n', '<Leader>gl', ':Commits<CR>', { noremap = true })
+vim.keymap.set('n', '<Leader>gl', ':Commits<CR>', { noremap = true, desc = "git log" })
 
--- File mappings
-vim.keymap.set('n', '<Leader>fR', ':Rename<space>', { noremap = true, desc = "Rename file" })
-vim.keymap.set('n', '<Leader>fm', ':Chmod<space>', { noremap = true })
-vim.keymap.set('n', '<Leader>fd', ':Mkdir<space>', { noremap = true })
+-- File and find mappings
+vim.keymap.set('n', '<Leader>fR', ':Rename<space>', { noremap = true, desc = "rename file" })
+vim.keymap.set('n', '<Leader>fc', ':Chmod<space>', { noremap = true, desc = "chmod file" })
+vim.keymap.set('n', '<Leader>fd', ':Mkdir<space>', { noremap = true, desc = "create directory" })
 vim.keymap.set('n', '<Leader>fa', ':A<CR>', { noremap = true })
-vim.keymap.set('n', '<Leader>ff', ':RipGrep<CR>', { noremap = true })
-vim.keymap.set('n', '<Leader>fh', ':History<CR>', { noremap = true })
+vim.keymap.set('n', '<Leader>ff', ':RipGrep<CR>', { noremap = true, desc = "find file" })
+vim.keymap.set('n', '<Leader>fh', ':History<CR>', { noremap = true, desc = "history of open buffers" })
 vim.keymap.set('n', '<Leader>ft', ':Rg ', { noremap = true })
 
 -- Buffer mappings
-vim.keymap.set('n', '<Leader>bo', ':if bufnr(\'%\') > 1 | 1,-1bd | endif | if bufnr(\'%\') < bufnr(\'$\') | +1,$bd | endif | redraw! <CR>', { noremap = true, desc = "Delete all other buffers (keep only the current one)" })
-vim.keymap.set('n', '<Leader>bd', ':Bd<CR>', { noremap = false })
+vim.keymap.set('n', '<Leader>bo', ':if bufnr(\'%\') > 1 | 1,-1bd | endif | if bufnr(\'%\') < bufnr(\'$\') | +1,$bd | endif | redraw! <CR>', { noremap = true, desc = "keep only the current buffer" })
+vim.keymap.set('n', '<Leader>bd', ':Bd<CR>', { noremap = false, desc = "delete buffer" })
 
 -- " nnoremap <Leader>s :exec "vimgrep /" . expand("<cword>") . "/g src/**/*.c"<CR>:copen<CR>
 
