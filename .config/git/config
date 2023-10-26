@@ -17,6 +17,7 @@
 # Useful aliases
 	lg = log --all --oneline --graph --decorate
 	lgv = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %C(bold blue)<%an>%Creset %Cgreen(%cr)' --abbrev-commit
+	lp = log --patch
 	uncommit = reset --soft HEAD~1
 	stash-untracked = "!f() { git stash; git stash -u; git stash pop stash@{1}; }; f"
 
