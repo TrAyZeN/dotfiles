@@ -194,6 +194,10 @@ source "$PLUGIN_DIR/zsh-bd/bd.plugin.zsh"
 
 compinit
 
+# Help
+unalias run-help
+autoload -Uz run-help
+
 path+=("$HOME/.local/bin")
 export PATH
 
