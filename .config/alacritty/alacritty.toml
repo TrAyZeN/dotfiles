@@ -1,0 +1,55 @@
+[env]
+TERM = "xterm-256color"
+
+[window]
+decorations = "none"
+
+[window.padding]
+x = 2
+
+[scrolling]
+history = 1000
+
+[font]
+size = 8.0
+
+[font.normal]
+# family: mononoki Nerd Font
+family = "Iosevka NFM"
+# style: Oblique
+# style: Medium
+style = "Extra-Bold"
+
+[colors.primary]
+background = "0x0f1419"
+foreground = "0xe6e1cf"
+
+[colors.normal]
+black = "0x0f1419"
+blue = "0x36a3d9"
+cyan = "0x95e6cb"
+green = "0xb8cc52"
+magenta = "0xf07178"
+red = "0xff3333"
+white = "0xffffff"
+yellow = "0xe7c547"
+
+[colors.bright]
+black = "0x525252"
+blue = "0x68d5ff"
+cyan = "0xc7fffd"
+green = "0xeafe84"
+magenta = "0xffa3aa"
+red = "0xff6565"
+white = "0xffffff"
+yellow = "0xfff779"
+
+[[keyboard.bindings]]
+chars = "\u001Bb"
+key = "Left"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u001Bf"
+key = "Right"
+mods = "Control"

@@ -27,7 +27,7 @@ dot_files=(
 .config/scripts/startup.sh
 .config/scripts/rofi-book.sh
 .config/scripts/notify_volume.sh
-.config/alacritty/alacritty.yml
+.config/alacritty/alacritty.toml
 .config/kitty/kitty.conf
 .icons/default/index.theme
 .config/gtk-3.0/settings.ini
