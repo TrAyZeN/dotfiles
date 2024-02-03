@@ -3,7 +3,7 @@
 ! -------------------- !
 
 *.foreground:	#dde9ed
-*.background:	rgba:0000/0000/0000/dddd
+*.background:	#000000
 *.cursorColor:	#ffe9d9
 
 ! black
