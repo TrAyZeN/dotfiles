@@ -79,8 +79,7 @@ ALERT=${BWhite}${BGRed} # Bold White on red background
 # set PATH so it includes user's private bin directories
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
-# Prompt
-export PS1="\[\033[38;5;43m\]\u\[\033[38;5;7m\] \w \[\033[38;5;82m\]~>\[\e[m\] "
+export PS1="\[\033[38;5;43m\]\w\[\033[38;5;7m\] \[\033[38;5;82m\]~>\[\e[m\] "
 
 [ -e "/etc/DIR_COLORS" ] && DIR_COLORS="/etc/DIR_COLORS"
 [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
