@@ -13,8 +13,7 @@ vim.api.nvim_create_user_command('WQ', 'wq', {})
 vim.api.nvim_create_user_command('Bd', 'bp|bd #', {})
 
 -- ctrl+s to save
-vim.keymap.set('', '<C-S>', ':w<CR>', { noremap = true })
-vim.keymap.set('i', '<C-S>', '<Esc>:w<CR>', { noremap = true })
+vim.keymap.set({ 'n', 'v', 'i' }, '<C-S>', '<Cmd>w<CR><Esc>', { noremap = true, desc = "Save file" })
 
 -- Copy line from cursor to the end
 -- same behavior as D
@@ -24,12 +23,9 @@ vim.keymap.set('n', 'Y', 'y$', { noremap = true })
 -- nnoremap gf :e <cfile><CR>
 
 -- ctrl+/ toggle comment
-vim.cmd [[
-    map <C-_> <Leader>c<space>
-]]
--- vim.keymap.set('', '<C-_>', '<Leader>c<space>')
+vim.keymap.set({ 'n', 'v', 'o' }, '<C-_>', '<Plug>NERDCommenterToggle', { noremap = true, desc = "Toggle line comment" })
 
--- Keep cursor centered
+-- Keep cursor centered while moving
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', 'n', 'nzzzv')
@@ -42,13 +38,13 @@ vim.keymap.set('c', '<C-k>', '<C-u>', { noremap = true })
 vim.keymap.set('c', '<C-p>', '<Up>', { noremap = true })
 vim.keymap.set('c', '<C-n>', '<Down>', { noremap = true })
 
--- Move selected lines using alt+[jk]
+-- Move selected lines up/down with alt+[jk]
 vim.keymap.set('v', '<M-j>', ':m \'>+1<CR>gv=gv', { noremap = true })
 vim.keymap.set('v', '<M-k>', ':m \'<-2<CR>gv=gv', { noremap = true })
 
 -- Navigate buffers with ctrl+[np]
-vim.keymap.set('n', '<C-n>', ':bnext<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-p>', ':bprevious<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-n>', ':bnext<CR>', { noremap = true, silent = true, desc = "Next buffer" })
+vim.keymap.set('n', '<C-p>', ':bprevious<CR>', { noremap = true, silent = true, desc = "Previous buffer" })
 
 -- Quickfix list mappings
 vim.keymap.set('n', '<C-j>', ':cn<CR>', { noremap = true })
@@ -136,6 +132,7 @@ vim.cmd [[ smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'  
 vim.keymap.set('n', '<Nop>', '<Plug>VimwikiRemoveHeaderLevel', { noremap = false })
 
 -- Terminal mappings
+-- TODO: Could use <Leader>o prefix for open
 vim.keymap.set('n', '<Leader>tt', ':terminal<CR>i', { noremap = true })
 vim.keymap.set('n', '<Leader>ts', ':rightbelow new<CR>:terminal<CR>i', { noremap = true })
 vim.cmd [[ tnoremap <Esc> <C-\><C-n> ]]

@@ -26,6 +26,11 @@ vim.api.nvim_create_autocmd('FileType', {
     command = 'setlocal ts=2 sw=2'
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'verilog',
+    command = 'setlocal ts=2 sw=2'
+})
+
 -- max line length
 vim.opt.textwidth = 80
 vim.opt.colorcolumn = '80'

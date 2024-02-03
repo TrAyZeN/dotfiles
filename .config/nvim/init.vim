@@ -39,6 +39,10 @@ endfunction
 
 autocmd BufWritePre *.h,*.hh,*.hpp,*.hxx,*.c,*.cc,*.cpp,*.vert,*.frag :call FormatBuffer()
 
+" Format verilog files
+" From https://danielmangum.com/posts/setup-verible-verilog-neovim/
+autocmd BufWritePost *.v lua vim.lsp.buf.format({ async = false })
+
 " augroup AutoSaveFolds
   " autocmd!
   " autocmd BufWinLeave * mkview
