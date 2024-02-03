@@ -203,5 +203,6 @@ export PATH
 
 export PGDATA="$HOME/postgres_data"
 export PGHOST="/tmp"
+export GTK_THEME="Qogir:dark"
 
 # eval "$(direnv hook zsh)"
