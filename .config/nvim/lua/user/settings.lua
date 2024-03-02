@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.opt.textwidth = 80
 vim.opt.colorcolumn = '80'
 
-vim.cmd [[ highlight ColorColumn ctermbg=DarkGray guibg=green ]]
+vim.cmd [[ highlight ColorColumn ctermbg=DarkGray guibg=DarkGray ]]
 
 vim.api.nvim_create_autocmd('FileType', {
     pattern = {'*.js'},
@@ -53,6 +53,9 @@ vim.showmatch = true -- Show matching parenthesis
 vim.opt.list = true -- Show listchars
 vim.opt.listchars = { tab = '..', trail = '~', eol = '$' }
 vim.opt.hlsearch = true -- Highlight search
+
+-- Needed by some plugins to display colors
+vim.opt.termguicolors = true
 
 -- TODO: Insert autocmd FileType * setlocal formatoptions-=ro
 

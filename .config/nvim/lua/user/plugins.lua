@@ -22,8 +22,10 @@ Plug 'tpope/vim-dispatch'
 
 -- Swag stuff
 Plug 'morhetz/gruvbox'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+-- Plug 'ellisonleao/gruvbox.nvim'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'akinsho/bufferline.nvim'
 
 -- git gud
 Plug 'tpope/vim-fugitive'
@@ -39,10 +41,6 @@ Plug 'vimwiki/vimwiki'
 -- UNIX helpers
 -- rename file with :Rename
 Plug 'tpope/vim-eunuch'
-
--- Show registers content
--- Unfortunately it does not work well on nvim
--- Plug 'junegunn/vim-peekaboo'
 
 -- Fasto file fuzzy finding
 Plug('junegunn/fzf', {
@@ -93,8 +91,13 @@ vim.call('plug#end')
 --------------------------
 -- Plugins configuration
 --------------------------
-vim.g['airline#extensions#tabline#enabled'] = 1
-vim.g['airline#extensions#tabline#formatter'] = 'unique_tail'
+require('lualine').setup({
+    options = {
+        theme = 'gruvbox',
+        -- section_separators = '',
+        -- component_separators = '|',
+    }
+})
 
 vim.g.loaded_clipboard_provider = 1
 
@@ -202,15 +205,15 @@ local opts = {
     },
 }
 
-require'lspconfig'.clangd.setup {
+require('lspconfig').clangd.setup({
     filetypes = { "c", "h", "cpp", "hpp", "cc", "hh", "hxx" }
-}
+})
 
-require'lspconfig'.pyright.setup {
-}
+require('lspconfig').pyright.setup({
+})
 
-require'lspconfig'.verible.setup {
-}
+require('lspconfig').verible.setup({
+})
 
 require('rust-tools').setup(opts)
 
@@ -246,7 +249,7 @@ cmp.setup({
   },
 })
 
-require'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup({
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
   ensure_installed = "all",
 
@@ -273,9 +276,9 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
     disable = { "" },
   },
-}
+})
 
-require'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup({
   textobjects = {
     select = {
       enable = true,
@@ -294,11 +297,11 @@ require'nvim-treesitter.configs'.setup {
       },
     },
   },
-}
+})
 
 vim.o.timeout = true
 vim.o.timeoutlen = 500
-require'which-key'.setup {
+require('which-key').setup({
     triggers_nowait = {
         -- marks
         "`",
@@ -311,4 +314,6 @@ require'which-key'.setup {
         -- spelling
         "z=",
     }
-}
+})
+
+require("bufferline").setup{}
