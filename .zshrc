@@ -195,8 +195,13 @@ source "$PLUGIN_DIR/zsh-bd/bd.plugin.zsh"
 compinit
 
 # Help
-unalias run-help
 autoload -Uz run-help
+(( ${+aliases[run-help]} )) && unalias run-help
+alias help=run-help
+
+autoload -Uz run-help-btrfs run-help-docker run-help-git run-help-ip \
+    run-help-openssl run-help-p4 run-help-perf run-help-podman run-help-ssh \
+    run-help-sudo run-help-svn run-help-svnadmin
 
 path+=("$HOME/.local/bin")
 export PATH
