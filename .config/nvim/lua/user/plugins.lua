@@ -74,6 +74,9 @@ Plug 'hrsh7th/vim-vsnip'
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
+-- Format code
+Plug 'stevearc/conform.nvim'
+
 -- Languages
 Plug 'cespare/vim-toml'
 Plug 'tikhomirov/vim-glsl'
@@ -213,6 +216,25 @@ require('lspconfig').pyright.setup({
 })
 
 require('lspconfig').verible.setup({
+})
+
+require('conform').setup({
+    formatters_by_ft = {
+        python = { "black" },
+    },
+    notify_on_error = true,
+    format_on_save = {
+        lsp_fallback = true,
+        timeout_ms = 500,
+    },
+})
+
+-- Format on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*",
+    callback = function(args)
+        require("conform").format({ bufnr = args.buf })
+    end,
 })
 
 require('rust-tools').setup(opts)

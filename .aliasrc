@@ -3,7 +3,8 @@
 # Color aliases
 alias \
     grep="grep --color=auto" \
-    ip="ip -c"
+    ip="ip -c" \
+    diff="diff --color=auto"
 
 alias \
     mkdir="mkdir -p" \
