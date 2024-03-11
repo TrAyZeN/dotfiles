@@ -5,7 +5,7 @@
 	defaultBranch = master
 
 [alias]
-# Shorter aliases
+	# Shorter aliases
 	a = add
 	s = status
 	d = diff
@@ -14,7 +14,7 @@
 	co = commit
 	com = commit -m
 	ch = checkout
-# Useful aliases
+	# Useful aliases
 	lg = log --all --oneline --graph --decorate
 	lgv = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(cyan)%d%Creset %s %C(bold blue)<%an>%Creset %Cgreen(%cr)' --abbrev-commit
 	lp = log --patch
@@ -26,7 +26,12 @@
 	fsmonitor = true
 
 [merge]
+	conflictstyle = zdiff3
 	tool = vimdiff
 
 [push]
+	autoSetupRemote = true
 	followTags = true
+
+[commit]
+	verbose = true
