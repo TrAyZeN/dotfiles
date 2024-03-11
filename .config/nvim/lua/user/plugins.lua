@@ -220,20 +220,22 @@ require('lspconfig').verible.setup({
 
 require('conform').setup({
     formatters_by_ft = {
-        python = { "black" },
+        python = { "isort", "black" },
     },
     notify_on_error = true,
     format_on_save = {
         lsp_fallback = true,
-        timeout_ms = 500,
+        timeout_ms = 200,
+    },
+    format_after_save = {
+        lsp_fallback = true,
     },
 })
 
--- Format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*",
     callback = function(args)
-        require("conform").format({ bufnr = args.buf })
+        require("conform").format({ async = true, bufnr = args.buf })
     end,
 })
 
