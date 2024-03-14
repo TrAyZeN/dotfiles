@@ -80,22 +80,18 @@ vim.keymap.set('n', '<Leader>bd', ':Bd<CR>', { noremap = false, desc = "delete b
 -- " nnoremap <Leader>s :exec "vimgrep /" . expand("<cword>") . "/g src/**/*.c"<CR>:copen<CR>
 
 -- Code navigation shortcuts
-vim.keymap.set('n', '<C-]>', vim.lsp.buf.definition, { noremap = true, silent = true })
+-- vim.keymap.set('n', '<C-]>', vim.lsp.buf.definition, { noremap = true, silent = true })
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, { noremap = true, silent = true })
-vim.keymap.set('n', 'gD', vim.lsp.buf.implementation, { noremap = true, silent = true })
--- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { noremap = true, silent = true })
+-- rust-analyzer does not yet support go to declaration
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { noremap = true, silent = true, desc = "go to definition" })
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { noremap = true, silent = true, desc = "go to declaration" })
+vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { noremap = true, silent = true, desc = "go to implementation" })
+vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { noremap = true, silent = true })
 vim.keymap.set('n', '1gD', vim.lsp.buf.type_definition, { noremap = true, silent = true })
-vim.keymap.set('n', 'gr', vim.lsp.buf.references, { noremap = true, silent = true })
+vim.keymap.set('n', 'gr', vim.lsp.buf.references, { noremap = true, silent = true, desc = "list references" })
 vim.keymap.set('n', 'g0', vim.lsp.buf.document_symbol, { noremap = true, silent = true })
 vim.keymap.set('n', 'gW', vim.lsp.buf.workspace_symbol, { noremap = true, silent = true })
-
--- rust-analyzer does not yet support go to declaration
--- " nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { noremap = true, silent = true })
-vim.keymap.set('n', 'gn', vim.lsp.buf.declaration, { noremap = true, silent = true })
-
--- Trigger code action
-vim.keymap.set('n', 'ga', vim.lsp.buf.code_action, { noremap = true, silent = true })
+vim.keymap.set('n', 'ga', vim.lsp.buf.code_action, { noremap = true, silent = true, desc = "select code action" })
 
 -- Goto previous/next diagnostic warning/error
 -- vim.keymap.set('n', 'g[', vim.lsp.diagnostic.goto_prev, { noremap = true, silent = true })
