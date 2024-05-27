@@ -10,7 +10,7 @@ vim.api.nvim_create_user_command('Q', 'q', {})
 vim.api.nvim_create_user_command('WQ', 'wq', {})
 
 -- Close buffer but don't close split
-vim.api.nvim_create_user_command('Bd', 'bp|bd #', {})
+vim.api.nvim_create_user_command('Bd', 'bp|bd<bang> #', { bang = true })
 
 -- ctrl+s to save
 vim.keymap.set({ 'n', 'v', 'i' }, '<C-S>', '<Cmd>w<CR><Esc>', { noremap = true, desc = "Save file" })
@@ -23,7 +23,7 @@ vim.keymap.set('n', 'Y', 'y$', { noremap = true })
 -- nnoremap gf :e <cfile><CR>
 
 -- ctrl+/ toggle comment
-vim.keymap.set({ 'n', 'v', 'o' }, '<C-_>', '<Plug>NERDCommenterToggle', { noremap = true, desc = "Toggle line comment" })
+vim.keymap.set({ 'n', 'v', 'o' }, '<C-_>', ':norm gc$<CR>', { noremap = true, desc = "Toggle line comment" })
 
 -- Keep cursor centered while moving
 vim.keymap.set('n', '<C-d>', '<C-d>zz')

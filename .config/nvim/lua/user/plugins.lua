@@ -14,9 +14,6 @@ Plug 'justinmk/vim-dirvish'
 -- Surround things
 Plug 'tpope/vim-surround'
 
--- Commenting made easy
-Plug 'preservim/nerdcommenter'
-
 -- Run commands asynchronously
 Plug 'tpope/vim-dispatch'
 
@@ -232,6 +229,7 @@ require('conform').setup({
     },
 })
 
+-- Format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*",
     callback = function(args)
