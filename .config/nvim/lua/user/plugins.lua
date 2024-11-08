@@ -1,11 +1,11 @@
 --------------------------
 -- Plugins configuration
 --------------------------
-require('lualine').setup({
+require("lualine").setup({
     options = {
-        theme = 'gruvbox',
-        -- section_separators = '',
-        -- component_separators = '|',
+        theme = "gruvbox",
+        -- section_separators = "",
+        -- component_separators = "|",
     }
 })
 
@@ -19,19 +19,19 @@ vim.g.NERDSpaceDelims = 1
 vim.g.NERDCompactSexyComs = 1
 -- Align line-wise comment delimiters flush left instead of following code
 -- identation
-vim.g.NERDDefaultAlgin = 'left'
+vim.g.NERDDefaultAlgin = "left"
 -- Enable NERDCommenterToggle to check all selected lines is commented or not
 vim.g.NERDToggleCheckAllLines = 1
 
 vim.g.rust_use_custom_ctags_defs = 1
 vim.g.rustfmt_autosave = 1
 
-vim.g.any_jump_search_prefered_engine = 'rg'
+vim.g.any_jump_search_prefered_engine = "rg"
 
-vim.g.vimwiki_list = {{ path = '~/vimwiki/', syntax = 'markdown', ext = '.md' }}
+vim.g.vimwiki_list = {{ path = "~/vimwiki/", syntax = "markdown", ext = ".md" }}
 vim.g.vimwiki_global_ext = 0
 
-vim.g.dirvish_mode = ':sort ,^.*[\\/],'
+vim.g.dirvish_mode = ":sort ,^.*[\\/],"
 
 -- vim.cmd [[
     -- function! s:build_quickfix_list(lines)
@@ -53,34 +53,34 @@ vim.g.dirvish_mode = ':sort ,^.*[\\/],'
 -- ]]
 
 vim.g.fzf_preview_window = {}
-vim.g.fzf_layout = { down = '30%' }
+vim.g.fzf_layout = { down = "30%" }
 -- vim.g.fzf_action = {
-    -- ['ctrl-q'] = function('s:build_quickfix_list'),
-    -- ['ctrl-q'] = function(lines)
+    -- ["ctrl-q"] = function("s:build_quickfix_list"),
+    -- ["ctrl-q"] = function(lines)
         -- vim.cmd [[
-            -- call setqflist(map(copy(a:lines), '{ "filename": v:val, "lnum": 1 }'))
+            -- call setqflist(map(copy(a:lines), "{ "filename": v:val, "lnum": 1 }"))
             -- copen
             -- cc
         -- ]]
     -- end,
-    -- ['ctrl-q'] = vim.fn['s:build_quickfix_list'],
-    -- ['ctrl-s'] = 'split',
-    -- ['ctrl-v'] = 'vsplit'
+    -- ["ctrl-q"] = vim.fn["s:build_quickfix_list"],
+    -- ["ctrl-s"] = "split",
+    -- ["ctrl-v"] = "vsplit"
 -- }
 
 vim.api.nvim_create_user_command(
-    'RipGrep',
-    'call fzf#run(fzf#wrap({ \'source\': \'rg --files --hidden --glob=!.git/\' }))',
-    { nargs = '*', bang = true }
+    "RipGrep",
+    "call fzf#run(fzf#wrap({ \'source\': \'rg --files --hidden --glob=!.git/\' }))",
+    { nargs = "*", bang = true }
 )
-vim.api.nvim_create_user_command('Todo', ':vimgrep /TODO/gj src/**/*.[ch] | copen', { nargs = 0 })
+vim.api.nvim_create_user_command("Todo", ":vimgrep /TODO/gj src/**/*.[ch] | copen", { nargs = 0 })
 
 -- https://sharksforarms.dev/posts/neovim-rust/
 -- Configure LSP
 -- https://github.com/neovim/nvim-lspconfig#rust_analyzer
 
 -- nvim_lsp object
-local nvim_lsp = require'lspconfig'
+local nvim_lsp = require"lspconfig"
 
 local opts = {
     tools = {
@@ -115,17 +115,17 @@ local opts = {
     },
 }
 
-require('lspconfig').clangd.setup({
+require("lspconfig").clangd.setup({
     filetypes = { "c", "h", "cpp", "hpp", "cc", "hh", "hxx" }
 })
 
-require('lspconfig').pyright.setup({
+require("lspconfig").pyright.setup({
 })
 
-require('lspconfig').verible.setup({
+require("lspconfig").verible.setup({
 })
 
-require('conform').setup({
+require("conform").setup({
     formatters_by_ft = {
         python = { "isort", "black" },
     },
@@ -147,11 +147,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end,
 })
 
-require('rust-tools').setup(opts)
+require("rust-tools").setup(opts)
 
 -- Setup Completion
 -- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
-local cmp = require'cmp'
+local cmp = require"cmp"
 
 cmp.setup({
   snippet = {
@@ -160,13 +160,13 @@ cmp.setup({
     end,
   },
   mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<Tab>'] = cmp.mapping.confirm({
+    ["<C-p>"] = cmp.mapping.select_prev_item(),
+    ["<C-n>"] = cmp.mapping.select_next_item(),
+    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping.close(),
+    ["<Tab>"] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     })
@@ -174,14 +174,14 @@ cmp.setup({
 
   -- Installed sources
   sources = {
-    { name = 'nvim_lsp' },
-    { name = 'vsnip' },
-    { name = 'path' },
-    { name = 'buffer' },
+    { name = "nvim_lsp" },
+    { name = "vsnip" },
+    { name = "path" },
+    { name = "buffer" },
   },
 })
 
-require('nvim-treesitter.configs').setup({
+require("nvim-treesitter.configs").setup({
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
   ensure_installed = "all",
 
@@ -208,9 +208,8 @@ require('nvim-treesitter.configs').setup({
     enable = true,
     disable = { "" },
   },
-})
 
-require('nvim-treesitter.configs').setup({
+  -- Configure nvim-treesitter-textobjects
   textobjects = {
     select = {
       enable = true,
@@ -233,7 +232,7 @@ require('nvim-treesitter.configs').setup({
 
 vim.o.timeout = true
 vim.o.timeoutlen = 500
-require('which-key').setup({
+require("which-key").setup({
     triggers_nowait = {
         -- marks
         "`",

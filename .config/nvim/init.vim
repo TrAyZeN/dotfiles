@@ -65,7 +65,7 @@ require("lazy").setup({
     {
         "junegunn/fzf",
         build = function()
-            vim.fn['fzf#install']()
+            vim.fn["fzf#install"]()
         end,
     },
     { "junegunn/fzf.vim" },
@@ -116,9 +116,9 @@ require("lazy").setup({
   checker = { enabled = true },
 })
 
-require('user.plugins')
-require('user.settings')
-require('user.keymap')
+require("user.plugins")
+require("user.settings")
+require("user.keymap")
 
 EOF
 
