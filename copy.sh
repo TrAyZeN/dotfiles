@@ -37,6 +37,7 @@ dot_files=(
 .config/scripts/startup.sh
 .config/scripts/rofi-book.sh
 .config/scripts/notify_volume.sh
+.config/scripts/notify_brightness.sh
 .config/alacritty/alacritty.toml
 .config/kitty/kitty.conf
 .icons/default/index.theme

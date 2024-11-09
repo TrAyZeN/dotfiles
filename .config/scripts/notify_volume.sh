@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 appname="notify_volume"
 # Arbitrary but unique message tag
