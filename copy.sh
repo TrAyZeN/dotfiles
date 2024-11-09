@@ -16,6 +16,16 @@ dot_files=(
 .config/nvim/lua/user/keymap.lua
 .config/nvim/lua/user/plugins.lua
 .config/nvim/lua/user/settings.lua
+.config/nvim/lua/config/lazy.lua
+.config/nvim/lua/plugins/completion.lua
+.config/nvim/lua/plugins/editor.lua
+.config/nvim/lua/plugins/fzf.lua
+.config/nvim/lua/plugins/lsp.lua
+.config/nvim/lua/plugins/rust.lua
+.config/nvim/lua/plugins/snippets.lua
+.config/nvim/lua/plugins/treesitter.lua
+.config/nvim/lua/plugins/ui.lua
+.config/nvim/lua/plugins/vimwiki.lua
 .config/neofetch/config.conf
 .config/picom/picom.conf
 .config/polybar/config.ini
@@ -42,8 +52,8 @@ dot_files=(
 )
 
 for df in ${dot_files[@]}; do
-    mkdir -p "$(dirname ${df})"
-    cp ~/${df} ./${df} 2> /dev/null
+    mkdir -p "$(dirname "${df}")"
+    cp ~/"${df}" ./"${df}" 2> /dev/null
 done
 
 cp /etc/udev/notify-lowbat.sh ./udev/notify-lowbat.sh
