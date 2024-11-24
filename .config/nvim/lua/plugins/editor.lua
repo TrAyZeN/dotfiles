@@ -2,7 +2,7 @@ return {
     -- Navigate files
     {
         "justinmk/vim-dirvish",
-        config = function()
+        init = function()
             vim.g.dirvish_mode = ":sort ,^.*[\\/],"
         end,
     },

@@ -1,7 +1,7 @@
 return {
     {
         "rust-lang/rust.vim",
-        config = function()
+        init = function()
             vim.g.rust_use_custom_ctags_defs = 1
             vim.g.rustfmt_autosave = 1
         end,

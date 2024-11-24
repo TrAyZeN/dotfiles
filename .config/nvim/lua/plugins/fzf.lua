@@ -8,6 +8,23 @@ return {
     },
     {
         "junegunn/fzf.vim",
+        init = function()
+            vim.g.fzf_preview_window = {}
+            vim.g.fzf_layout = { down = "30%" }
+            -- vim.g.fzf_action = {
+                -- ["ctrl-q"] = function("s:build_quickfix_list"),
+                -- ["ctrl-q"] = function(lines)
+                    -- vim.cmd [[
+                        -- call setqflist(map(copy(a:lines), "{ "filename": v:val, "lnum": 1 }"))
+                        -- copen
+                        -- cc
+                    -- ]]
+                -- end,
+                -- ["ctrl-q"] = vim.fn["s:build_quickfix_list"],
+                -- ["ctrl-s"] = "split",
+                -- ["ctrl-v"] = "vsplit"
+            -- }
+        end,
         config = function()
             -- vim.cmd [[
                 -- function! s:build_quickfix_list(lines)
@@ -27,22 +44,6 @@ return {
 
                 -- command! -nargs=* -bang Salut call RipgrepFzf(<q-args>, <bang>0)
             -- ]]
-
-            vim.g.fzf_preview_window = {}
-            vim.g.fzf_layout = { down = "30%" }
-            -- vim.g.fzf_action = {
-                -- ["ctrl-q"] = function("s:build_quickfix_list"),
-                -- ["ctrl-q"] = function(lines)
-                    -- vim.cmd [[
-                        -- call setqflist(map(copy(a:lines), "{ "filename": v:val, "lnum": 1 }"))
-                        -- copen
-                        -- cc
-                    -- ]]
-                -- end,
-                -- ["ctrl-q"] = vim.fn["s:build_quickfix_list"],
-                -- ["ctrl-s"] = "split",
-                -- ["ctrl-v"] = "vsplit"
-            -- }
 
             vim.api.nvim_create_user_command(
                 "RipGrep",
