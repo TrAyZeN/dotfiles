@@ -16,27 +16,14 @@ return {
         opts = {
             formatters_by_ft = {
                 python = { "isort", "black" },
+                rust = { "rustfmt", lsp_format = "fallback" },
             },
             notify_on_error = true,
-            format_on_save = {
-                lsp_fallback = true,
-                timeout_ms = 200,
-            },
-            format_after_save = {
-                lsp_fallback = true,
+            default_format_opts = {
+                lsp_format = "fallback",
+                timeout_ms = 500,
             },
         },
-        config = function(plugin, opts)
-            require("conform").setup(opts)
-
-            -- Format on save
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                pattern = "*",
-                callback = function(args)
-                    require("conform").format({ async = true, bufnr = args.buf })
-                end,
-            })
-        end,
     },
     -- Display keys
     {
