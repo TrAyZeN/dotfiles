@@ -2,6 +2,9 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter-textobjects",
+        },
         opts = {
             -- One of "all", "maintained" (parsers with maintainers), or a list of languages
             ensure_installed = "all",
@@ -25,12 +28,18 @@ return {
                 -- Instead of true it can also be a list of languages
                 additional_vim_regex_highlighting = false,
             },
-            ident = {
+            indent = {
                 enable = true,
                 disable = { "" },
             },
-
-            -- Configure nvim-treesitter-textobjects
+        },
+        config = function(plugin, opts)
+            require("nvim-treesitter.configs").setup(opts)
+        end
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        opts = {
             textobjects = {
                 select = {
                     enable = true,
@@ -50,6 +59,8 @@ return {
                 },
             },
         },
+        config = function(plugin, opts)
+            require("nvim-treesitter.configs").setup(opts)
+        end
     },
-    { "nvim-treesitter/nvim-treesitter-textobjects" },
 }
