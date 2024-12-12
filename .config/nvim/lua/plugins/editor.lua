@@ -31,6 +31,9 @@ return {
     -- Display keys
     {
         "folke/which-key.nvim",
+        dependencies = {
+            "echasnovski/mini.icons",
+        },
         opts = {
             triggers_nowait = {
                 -- marks
