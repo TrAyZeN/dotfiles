@@ -154,6 +154,11 @@ mvl() {
     mv "$(get_latest "$download_dir")" "$1"
 }
 
+# Less previous command
+lessp() {
+    fc -s | less
+}
+
 # Append given path to the PATH
 path_append() {
     export OLDPATH=$PATH
