@@ -1,7 +1,9 @@
 #!/bin/sh
 
+# -modes "book:~/.config/rofi/scripts/book.sh,book-full:~/.config/rofi/scripts/book-full.sh" \
+
 rofi \
-    -modi "book:~/.config/rofi/scripts/book.sh" \
+    -modes "book:~/.config/rofi/scripts/book.sh" \
     -show book \
     -matching fuzzy \
     -sort \

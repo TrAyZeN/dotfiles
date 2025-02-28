@@ -156,7 +156,7 @@
      Many programs reserve space automatically, but you can use this in other
      cases. -->
   <margins>
-    <top>30</top>
+    <top>20</top>
     <bottom>0</bottom>
     <left>0</left>
     <right>0</right>
@@ -345,12 +345,12 @@
           <enabled>true</enabled>
           <name>Rofi</name>
         </startupnotify>
-        <command>~/.config/rofi/launchers/text/launcher.sh</command>
+        <command>rofi -modi 'run,ssh' -show run</command>
       </action>
     </keybind>
     <keybind key="W-Return">
       <action name="Execute">
-        <command>kitty</command>
+        <command>alacritty</command>
       </action>
     </keybind>
     <keybind key="W-l">

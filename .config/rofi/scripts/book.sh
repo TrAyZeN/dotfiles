@@ -16,8 +16,7 @@ fi
 
 if [ -d "${CURR_PWD}" ]; then
     ls -1 "${CURR_PWD}" | while read file; do
-        NEXT_PWD="${CURR_PWD}/$file"
-        echo -en "$file\x00info\x1f${NEXT_PWD}\n"
+        echo -en "${file}\x00info\x1f${CURR_PWD}/${file}\n"
     done
 else
     xdg-open "${CURR_PWD}" >/dev/null 2>&1

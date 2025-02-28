@@ -17,6 +17,6 @@
 #xfce-mcs-manager &
 
 ~/.config/polybar/launch.sh &
-feh --bg-fill --no-fehbg ~/images/wallpaper.png &
+feh --bg-fill --no-fehbg ~/images/wallpaper.jpg &
 redshift &
 
