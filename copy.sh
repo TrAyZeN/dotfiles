@@ -50,6 +50,12 @@ dot_files=(
 .config/mpd/mpd.conf
 .config/ncmpcpp/config
 .config/ncmpcpp/bindings
+.config/sway/config
+.config/waybar/config
+.config/waybar/style.css
+.config/swayidle/config
+.config/swappy/config
+.config/gammastep/config.ini
 )
 
 for df in ${dot_files[@]}; do
