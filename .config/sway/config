@@ -206,7 +206,7 @@ bindsym $mod+m exec i3-msg '[title="^scratchpad_music$"] scratchpad show' || ala
 
 # Assign workspaces to applications
 assign [class="Thunderbird"] $ws2
-assign [class="discord"] $ws3
+assign [app_id="com.discordapp.Discord"] $ws3
 
 # Tell which windows are using xwayland
 for_window [shell="xwayland"] title_format "[XWayland] %title"
@@ -223,6 +223,13 @@ exec swayidle -w
 input "*" {
     xkb_layout "us,fr"
     xkb_options compose:ralt
+
+    left_handed disabled
+    tap enabled
+    natural_scroll disabled
+    dwt enabled
+    accel_profile "flat"
+    pointer_accel 0
 }
 
 bar {
