@@ -1,5 +1,5 @@
 # History configuration
-HISTFILE=~/.histfile
+HISTFILE="$HOME/.histfile"
 HISTSIZE=2000
 SAVEHIST=10000
 setopt hist_ignore_dups
@@ -197,7 +197,12 @@ source "$PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
 source "$PLUGIN_DIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 source "$PLUGIN_DIR/zsh-bd/bd.plugin.zsh"
 
-compinit
+# Rebuild completion cache only once a day
+# See: https://gist.github.com/ctechols/ca1035271ad134841284?permalink_comment_id=3994613#gistcomment-3994613
+for dump in "$HOME/.zcompdump"(N.mh+24); do
+  compinit
+done
+compinit -C
 
 # Help
 autoload -Uz run-help
