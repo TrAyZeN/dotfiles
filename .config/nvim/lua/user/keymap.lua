@@ -49,6 +49,13 @@ vim.keymap.set("v", "<M-k>", ":m \'<-2<CR>gv=gv", { noremap = true })
 -- vim.keymap.set("n", "<C-k>", ":cp<CR>", { noremap = true })
 
 wk.add({
+    { "<Leader>q", group = "quickfix" },
+    { "<Leader>qo", ":copen<CR>", mode = "n", noremap = true, desc = "open" },
+    { "<Leader>qn", ":cnext<CR>", mode = "n", noremap = true, desc = "next" },
+    { "<Leader>qp", ":cprev<CR>", mode = "n", noremap = true, desc = "prev" },
+})
+
+wk.add({
     { "<Leader>m", group = "make" },
     { "<Leader>ma", ":Make<CR>", mode = "n", noremap = true, desc = "make" },
     { "<Leader>mr", ":Make run<CR>", mode = "n", noremap = true, desc = "make run" },
@@ -57,19 +64,19 @@ wk.add({
 
 wk.add({
     { "<Leader>g", group = "git" },
-    { "<Leader>gg", ":Git<CR>", mode = "n", noremap = true, desc = "git status" },
-    { "<Leader>gb", ":Git blame<CR>", mode = "n", noremap = true, desc = "git blame" },
-    { "<Leader>gd", ":Gvdiffsplit<CR>", mode = "n", noremap = true, desc = "git diff" },
-    { "<Leader>ga", ":Git add %<CR>", mode = "n", noremap = true, desc = "git add current file" },
-    { "<Leader>gc", ":Git commit<CR>", mode = "n", noremap = true, desc = "git commit" },
-    { "<Leader>gl", ":Commits<CR>", mode = "n", noremap = true, desc = "git log" },
+    { "<Leader>gg", ":Git<CR>", mode = "n", noremap = true, desc = "status" },
+    { "<Leader>gb", ":Git blame<CR>", mode = "n", noremap = true, desc = "blame" },
+    { "<Leader>gd", ":Gvdiffsplit<CR>", mode = "n", noremap = true, desc = "diff" },
+    { "<Leader>ga", ":Git add %<CR>", mode = "n", noremap = true, desc = "add current file" },
+    { "<Leader>gc", ":Git commit<CR>", mode = "n", noremap = true, desc = "commit" },
+    { "<Leader>gl", ":Commits<CR>", mode = "n", noremap = true, desc = "log" },
 })
 -- vim.keymap.set("n", "<Leader>gl", ":Flog<CR>", { noremap = true })
 
 wk.add({
     { "<Leader>f", group = "file/find" },
     { "<Leader>ff", ":RipGrep<CR>", mode = "n", noremap = true, desc = "Find file" },
-    { "<Leader>fr", ":Rg ", mode = "n", noremap = true, desc = "ripgrep" },
+    { "<Leader>fr", ":Rg<CR>", mode = "n", noremap = true, desc = "ripgrep" },
     { "<Leader>fR", ":Rename<space>", mode = "n", noremap = true, desc = "Rename file" },
     { "<Leader>fc", ":Chmod<space>", mode = "n",  noremap = true, desc = "chmod file" },
     { "<Leader>fd", ":Mkdir<space>", mode = "n", noremap = true, desc = "Create directory" },
@@ -79,10 +86,10 @@ wk.add({
 
 wk.add({
     { "<Leader>b", group = "buffer" },
-    { "<Leader>bp", ":bp<CR>", mode = "n", noremap = true, desc = "Previous buffer" },
-    { "<Leader>bn", ":bn<CR>", mode = "n", noremap = true, desc = "Next buffer" },
-    { "<Leader>bo", ":if bufnr(\'%\') > 1 | 1,-1bd | endif | if bufnr(\'%\') < bufnr(\'$\') | +1,$bd | endif | redraw! <CR>", mode = "n", noremap = true, desc = "Delete other buffers" },
-    { "<Leader>bd", ":Bd<CR>", mode = "n", noremap = false, desc = "Delete buffer" },
+    { "<Leader>bp", ":bp<CR>", mode = "n", noremap = true, desc = "prev" },
+    { "<Leader>bn", ":bn<CR>", mode = "n", noremap = true, desc = "next" },
+    { "<Leader>bo", ":if bufnr(\'%\') > 1 | 1,-1bd | endif | if bufnr(\'%\') < bufnr(\'$\') | +1,$bd | endif | redraw! <CR>", mode = "n", noremap = true, desc = "delete others" },
+    { "<Leader>bd", ":Bd<CR>", mode = "n", noremap = false, desc = "delete" },
 })
 
 -- Shortcuts for buffer navigation
@@ -155,8 +162,8 @@ vim.keymap.set("n", "<Nop>", "<Plug>VimwikiRemoveHeaderLevel", { noremap = false
 -- TODO: Could use <Leader>o prefix for open
 wk.add({
     { "<Leader>t", group = "terminal" },
-    { "<Leader>tt", ":terminal<CR>i", mode = "n", noremap = true, desc = "Open terminal" },
-    { "<Leader>ts", ":rightbelow new<CR>:terminal<CR>i", mode = "n",  noremap = true, desc = "Open terminal in split" },
+    { "<Leader>tt", ":terminal<CR>i", mode = "n", noremap = true, desc = "open" },
+    { "<Leader>ts", ":rightbelow new<CR>:terminal<CR>i", mode = "n",  noremap = true, desc = "open in split" },
 })
 vim.cmd [[ tnoremap <Esc> <C-\><C-n> ]]
 vim.keymap.set("t", "<C-v><Esc>", "<Esc>", { noremap = true })
