@@ -34,20 +34,7 @@ return {
         dependencies = {
             "echasnovski/mini.icons",
         },
-        opts = {
-            triggers_nowait = {
-                -- marks
-                "`",
-                "'",
-                "g`",
-                "g'",
-                -- registers
-                '"',
-                "<c-r>",
-                -- spelling
-                "z=",
-            }
-        },
+        opts = {},
         config = function(plugin, opts)
             require("which-key").setup(opts)
 
