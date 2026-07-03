@@ -1,27 +1,81 @@
+typeset -U path PATH
+# Load env vars
+[ -f "$HOME/.profile" ] && emulate sh -c 'source "$HOME/.profile"'
+
 # History configuration
 HISTFILE="$HOME/.histfile"
-HISTSIZE=2000
-SAVEHIST=10000
+HISTSIZE=50000
+SAVEHIST=50000
 setopt hist_ignore_dups
 setopt hist_find_no_dups
-
-export XDG_CONFIG_HOME="$HOME/.config"
+setopt share_history          # sync history across concurrent sessions
+setopt extended_history       # record timestamps
+setopt hist_reduce_blanks
+setopt hist_ignore_space      # commands starting with a space aren't recorded
 
 unsetopt beep
 
 # Word delimiters
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
-PLUGIN_DIR="/usr/share/zsh/plugins"
+# Completion
+# autoload -Uz compinit
+zstyle ':completion:*' menu select
+zstyle :compinstall filename "$HOME/.zshrc"
 
-# Git
-source "$PLUGIN_DIR/gitstatus/gitstatus.plugin.zsh"
+# Rebuild completion cache only once a day
+# See: https://gist.github.com/ctechols/ca1035271ad134841284?permalink_comment_id=3994613#gistcomment-3994613
+# if [[ -n $HOME/.zcompdump(#qN.mh+24) ]]; then
+  # compinit
+# else
+  # compinit -C
+# fi
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
+
+# Plugins
+zinit ice wait lucid \
+    atload'gitstatus_stop prompt; gitstatus_start -s -1 -u -1 -c -1 -d -1 prompt'
+zinit light romkatv/gitstatus
+
+# fzf-tab needs to loaded after compinit, but before plugins which will wrap
+# widgets, such as zsh-autosuggestions or fast-syntax-highlighting
+# source "$PLUGIN_DIR/fzf-tab/fzf-tab.plugin.zsh"
+
+zinit wait lucid for \
+    atinit"zicompinit; zicdreplay" \
+        zdharma-continuum/fast-syntax-highlighting \
+    atload"_zsh_autosuggest_start" \
+        zsh-users/zsh-autosuggestions \
+    blockf \
+        zsh-users/zsh-completions
 
 # Prompt
 function set_prompt() {
     STATUS=''
 
-    if gitstatus_query prompt && [[ $VCS_STATUS_RESULT == ok-sync ]]; then
+    if (( $+functions[gitstatus_query] )) && gitstatus_query prompt && [[ $VCS_STATUS_RESULT == ok-sync ]]; then
         STATUS=[${${VCS_STATUS_LOCAL_BRANCH:-@${VCS_STATUS_COMMIT}}//\%/%%} # escape %
         (( VCS_STATUS_NUM_STAGED    )) && STATUS+=" +${VCS_STATUS_NUM_STAGED}"
         (( VCS_STATUS_NUM_UNSTAGED  )) && STATUS+=" !${VCS_STATUS_NUM_UNSTAGED}"
@@ -32,24 +86,27 @@ function set_prompt() {
     # Only working with 256 colors
     #PROMPT="%F{45}%n%f:%F{184}%d%f %F{208}${STATUS}%f%(?.%F{46}~>%f.%F{197}~>%f) "
 
-    SHORT_PWD=$(echo "$PWD" | sed -E 's/([^/])[^/]*\//\1\//g')
+    # SHORT_PWD=$(echo "$PWD" | sed -E 's/([^/])[^/]*\//\1\//g')
+    # This is supposed to be the same short-prompt as with sed
+    setopt local_options extended_glob
+    SHORT_PWD=${${PWD/#$HOME/~}//(#b)([^\/])[^\/]#\//$match[1]/}
 
     # Shorten prompt
     #PROMPT="%F{184}${SHORT_PWD}%f %F{208}${STATUS}%f%(?.%F{46}~>%f.%F{197}~>%f) "
-    PROMPT="%F{184}${SHORT_PWD}%f %F{208}${STATUS}%f%(?.%F{46}ᛋ%f.%F{197}ᛋ%f) "
+    PROMPT="%F{184}${SHORT_PWD}%f %F{208}${STATUS}%f%(?.%F{46}>%f.%F{197}ᛋ%f) "
     RPROMPT=""
-
-    setopt no_prompt_{bang,subst} prompt_percent  # enable/disable correct prompt expansions
 }
 
-gitstatus_stop 'prompt' && gitstatus_start -s -1 -u -1 -c -1 -d -1 'prompt'
+setopt no_prompt_{bang,subst} prompt_percent  # enable/disable correct prompt expansions
 autoload -Uz add-zsh-hook
 add-zsh-hook precmd set_prompt
 
 export LS_COLORS='ow=01;36;40'
 
-# Enable vim bindings
-# bindkey -v
+# Set keymap
+# NOTE: For some reason setting EDITOR environment variables to nvim disables
+# Emacs style bindings. So make sure this is called after setting EDITOR.
+bindkey -e
 
 # Use lf to switch directories and bind it to ctrl-o
 lfcd () {
@@ -170,39 +227,10 @@ bindkey -s '^j' 'fg^M'
 # Load aliases
 [ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
 
-export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/
-
-export EDITOR="nvim"
-
-# For some reason when setting EDITOR environment variables disables Emacs style
-# bindings
-bindkey -e
-
-# Completion
-autoload -Uz compinit
-fpath=($PLUGIN_DIR/zsh-completions/src $fpath)
-zstyle ':completion:*' menu select
-zstyle :compinstall filename "$HOME/.zshrc"
-
-# fzf-tab needs to loaded after compinit, but before plugins which will wrap
-# widgets, such as zsh-autosuggestions or fast-syntax-highlighting
-# source "$PLUGIN_DIR/fzf-tab/fzf-tab.plugin.zsh"
-
 zstyle ":completion:*:git-checkout:*" sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
-
-source "$PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
-source "$PLUGIN_DIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
-source "$PLUGIN_DIR/zsh-bd/bd.plugin.zsh"
-
-# Rebuild completion cache only once a day
-# See: https://gist.github.com/ctechols/ca1035271ad134841284?permalink_comment_id=3994613#gistcomment-3994613
-for dump in "$HOME/.zcompdump"(N.mh+24); do
-  compinit
-done
-compinit -C
 
 # Help
 autoload -Uz run-help
@@ -213,11 +241,11 @@ autoload -Uz run-help-btrfs run-help-docker run-help-git run-help-ip \
     run-help-openssl run-help-p4 run-help-perf run-help-podman run-help-ssh \
     run-help-sudo run-help-svn run-help-svnadmin
 
-path+=("$HOME/.local/bin")
-export PATH
+# direnv
+(( $+commands[direnv] )) && eval "$(direnv hook zsh)"
 
-export PGDATA="$HOME/postgres_data"
-export PGHOST="/tmp"
-export GTK_THEME="Qogir:dark"
-
-# eval "$(direnv hook zsh)"
+# Fix proxy error when cursor uses cargo
+# https://github.com/cursor/cursor/issues/549
+if [[ "$TERM_PROGRAM" == "vscode" || -n "$CURSOR_TRACE_ID" || -n "$CURSOR_AGENT" ]]; then
+    unset ARGV0
+fi

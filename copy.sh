@@ -3,6 +3,7 @@
 dot_files=(
 .vimrc
 .Xresources
+.profile
 .bashrc
 .zshrc
 .aliasrc
